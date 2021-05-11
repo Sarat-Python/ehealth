@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+{%block colorVital%}style="background:#416be0;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+    
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{heart.count}});
+    {%for hr in heart%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+
+<div id="dhtmlgoodies_tabView1">
+<!-- Heart Rate -->
+	<div class="dhtmlgoodies_aTab">
+	   <div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h2>Heart Rate </h2></span></div> 
+		<div style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 0px solid #a1afbe;margin-top: 20px;" >
+				<form  name="heart" id="heart" action="/heartrate" method="post">
+					<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Heart Rate:</td><td><br><input type="text" class=dialogtextbox name=phr>&nbsp;&nbsp;bpm</td></tr>
+						<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name=hrtgoal>&nbsp;&nbsp;bpm</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name="hrdate" />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'heart',
+									// inputname
+									'controlname': 'hrdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView12" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_heart" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Present Heart Rate</th><th>Goal</th></tr>
+						{%for hrt in heart%}{%ifequal hrt.heartRate None%}{%else%}
+						<tr><td style="text-align: center;">{{hrt.collectionDate}}</td><td style="text-align: center;">{{hrt.heartRate}}</td><td style="text-align: center;">{{hrt.heartRateGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+				   </div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView12',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+
+	<div style=";border: 0px solid #a1afbe;margin-top:-15px;margin:25px;">
+<div ><h3><b>What is Heart Rate?</b></h3>
+<!-- <p><h3><b>What is Heart Rate?</b></h3></p>  -->
+<p>Heart rate is determined by the number of heartbeats per unit of time, typically expressed as beats per minute (BPM), it can vary with as the body's need for oxygen changes, such as during
+exercise or sleep. The measurement of heart rate is used by medical professionals to assist in the diagnosis and tracking of medical conditions.</p>
+				<div ><h3><b>Focus on Your Heart</b></h3>
+				
+				<p>There are so many things to worry about these days, it's tough to get too riled about something we can't see or feel. Many types of heart disease fall into that category and, though it's the
+				single largest killer of American men and women, for many of us, it isn't even on the radar. When we talk about heart disease, what we usually mean is coronary artery disease. If your
+				coronary arteries, which supply oxygen to the heart, become blocked, your heart doesn't get the nutrients it needs to function. That could lead to a heart attack or even death.</p>
+				<p>It's important to become familiar with heart disease symptoms for women and men, but not
+				everyone has obvious symptoms that point to a problem. It's possible to have high blood
+				pressure or high cholesterol and feel just fine, which leads many of us to believe that, if we 
+				feel healthy, then we are healthy.
+				This is especially true of women, who may not experience the typical heart disease symptoms
+				we see in men. For example, women may not feel any chest pain, but will often complain of
+				a burning sensation in the shoulders, back, arms or jaw. Because these symptoms don't seem
+				related to heart problems, women may be misdiagnosed, which could mean problems down
+				the road.</p>
+				<p>That isn't to say that all of us are walking around with heart disease. It's possible that you're
+				healthy now, but that some of the things you're doing put you at risk for future heart problems.</p>
+				<div ><h3><b>Just some things that can contribute to heart disease include:</b></h3>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Being overweight or obese</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Smoking</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Family history of heart problems</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Stress</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Being sedentary</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eating a high fat diet</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Hypertension</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Depression</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;High cholesterol</p></div></div>
+				<div style="text-align: center">
+				<span><img src="/static/images/heart_rate.PNG"></span><br>
+				<span><img src="/static/images/viewer.png"></span><br>
+				<span><img src="/static/images/view.png"></span></div></div>
+				<div style="margin: 25px;"><h3><b>How to Change Your Heart</b></h3>
+				
+				<p>
+				If you've ever worked out, you've certainly felt the immediate effects of exercise - your heart
+				speeds up as your body demands more oxygen, your breathing rate increases and you start to
+				sweat to cool your body. All of those things go back to normal as soon as you stop exercising,
+				but, what you may not know is that exercising consistently can actually change how your heart functions.</p>
+				<h3>Regular exercise:</h3>
+				<p>Lowers your resting heart rate (RHR). A heart that's in good shape actually beats fewer times when you're at rest. That's why many athletes have resting heart rates as low as 40
+				or 50 beats per minute. As you exercise, you'll find your RHR will decrease as you get into better shape.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Makes the heart more efficient. Consistently exercising the heart makes it work harder
+				for you with less effort expended. That means normal activities become easier since your heart doesn't have to work as hard.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Strengthens the heart. Just like lifting weights repeatedly can make your muscles
+				stronger, regular cardio exercise actually makes your heart (which is also a muscle) stronger. The stronger your heart is, the more blood it can pump with each beat. That means your
+				body gets oxygen faster and more efficiently.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Helps you recover faster. When you exercise regularly, it doesn't take as much time for
+				your heart rate to return to baseline. That recovery time becomes faster and faster as you get in shape. Tracking recovery heart rate is one way experts track improved fitness levels.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Protects your health. As your heart gets stronger, it reduces your risk of heart attack,
+				stroke, diabetes and high cholesterol.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increases good cholesterol. Not only does it increase good cholesterol, regular exercise
+				also decreases bad cholesterol (LDL) which means there may be less plaque built up in the arteries. Less plaque means blood can flow freely to and from the heart.</p>
+				</div>
+						</div>
+					</div>
+	
+
+<!-- Body Temperature Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div style="height: 350px;">
+			<div style="float: left;width:480px;border: 0px solid #a1afbe;height: 300px;margin-top: 20px;" >
+				<form  name="btemp" id="btemp" action="/bodytemp" method="post">
+					<table style="font-size: 0.99em;width:480px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Temperature:</td><td><br><input type="text" class=dialogtextbox name=ptemp>degrees/Fahrenheit</td></tr>
+						<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name=tempgoal>degrees/Fahrenheit</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name=btempdate />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'btemp',
+									// inputname
+									'controlname': 'btempdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView11" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_temp" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Present Body Temperature</th><th>Goal</th></tr>
+						{%for bdy in tempe%}{%ifequal bdy.temperature None%}{%else%}
+						<tr><td style="text-align: center;">{{bdy.collectionDate}}</td><td style="text-align: center;">{{bdy.temperature}}</td><td style="text-align: center;">{{bdy.temperatureGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView11',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 0px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px;"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+		</div>
+	</div>
+	<!-- Blood Pressure Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+			<div style="height:350px;">
+				<div style="float: left;width:480px;border: 0px solid #a1afbe;height:300px;margin-top: 20px;" >
+					<form  name="bloodpressure" id="bloodpressure" action="/home" method="post">
+						<table style="font-size: 0.99em;margin:auto;border: 0px solid;font-size: 14px;">
+							<tr><td><br>Blood pressure</td><td><br><input type="text" size="4" name=bldprs1>&nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" size="4" name="bldprs2">&nbsp;&nbsp;mmHg</td></tr>
+							<tr><td>Collection Date </td><td><input type="text"  name=cdate />
+								<script type="text/JavaScript">
+									new tcal ({
+										// formname
+										'formname': 'bloodpressure',
+										// inputname
+										'controlname':'cdate'
+									});
+									</script></td>
+							</tr>
+							<tr><td><br>Goal</td><td><br><input type="text" class=dialogtextbox name=bpgoal></td></tr>
+							<tr><td colspan="2">Brief Note: </td></tr>
+							<tr><td colspan="2"><textarea style="width: 335px;resize:none;" ></textarea></td></tr>
+							<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+				</div>
+				<div id="dhtmlgoodies_tabView3" style="float: right;margin-right:5px;" >
+					<span style="margin-left: 200px;">Track record</span>
+						<div class="dhtmlgoodies_aTab">
+							<div style="margin-top: 5px;">
+						 		<div id="chart_div1"></div>
+							</div>
+						</div>
+						<div class="dhtmlgoodies_aTab" >	
+							<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+							<table class="sample" style="margin: auto;">
+							<tr><th>Date</th><th>Systolic Blood Pressure</th><th>Diastolic Blood Pressure</th><th>Goal</th></tr>
+							{%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+							<tr><td style="text-align: center;">{{bp.collectionDate}}</td><td style="text-align: center;">{{bp.bloodPressure1}}</td><td style="text-align: center;">{{bp.bloodPressure2}}</td><td style="text-align: center;">{{bp.bpGoal}}</td></tr>
+							{%endifequal%}
+							{%endfor%}
+							</table>
+							</div>
+						</div>
+				</div>
+				<script type="text/javascript">
+				initTabs('dhtmlgoodies_tabView3',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+				</script>
+			</div>
+			<div style=";border: 0px solid #a1afbe;margin-top:-15px;;text-align: center;">
+					<h5>Blood Pressure Table</h5>
+					<div style="text-align: left;margin: 15px">
+						&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;140 - 90 - Stage 1 High Blood Pressure<br>
+						&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;140 - 90 - Borderline High<br>
+						&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;130 - 85 - High Normal<br>
+						&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120 - 80 - Normal Blood Pressure<br>
+						&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;110 - 75 - Low Normal<br>
+						<br><br><br><br>
+					</div>
+			</div>
+		</div>	
+
+	<script type="text/javascript">
+	initTabs('dhtmlgoodies_tabView1',Array('Heart Rate','Body Temperature','Blood Pressure'),0,980,Array(true,true));
+	</script>
+</div>
+<script type="text/javascript">
+//{% if msgLog%}alert('{{msgLog}}'){%endif%}
+</script>
+<div class="footer" style="text-align: left;margin-left: 5px;"><a href="">&copy; 2011 eHealth Ideas LLC</a><br><br></div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if hrmsg %}alert('{{hrmsg}}'){%endif%}
+{% if bpmsg %}alert('{{bpmsg}}'){%endif%}
+{% if btmsg %}alert('{{btmsg}}'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+</script>
+{% endblock %}

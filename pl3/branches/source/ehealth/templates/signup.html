@@ -1,0 +1,135 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<body onload="defualt()">
+<div style="margin:auto;height:900px;width:980px;border: 0px solid;"><br>
+<div style="margin-left: 10px">Registration Type:</div> 
+<div style="float:left;margin-left: 10px">
+<SELECT NAME="list"  OnChange="getSelect(this)" style="width:100px;">
+<option value="user">User</option>
+<option value="doctor">Doctor</option>
+<option value="hospital">Hospital</option>
+<option value="blood bank">Blood Bank</option>
+<option value="pharmacy">Pharmacy</option>
+</select></div><br><br><br>
+
+<div style="color:red;text-align:center;font-size: 0.84em;">* Field Mandatory</div>
+<form id="user" name="user" action="/signup" method="post" >
+		
+		<div id='user' style="position: absolute;text-align:center;width:850px;margin:auto;border: 0px solid;"><br>
+		<div style="margin-left: 10px;border: 0px solid;">User Sign Up</div><br><br>
+		<table style="width: 400px;margin:auto;border: 0px solid;">
+		
+		<tr><td style="border: 0px solid;float: right;">First Name: </td><td><input type="text" class=textbox name="fname" value={{fn}}></td></tr>
+		<tr><td style="border: 0px solid;float: right;"><br>Last Name: </td><td><br><input type="text" class=textbox name="lname" value={{ln}}></td></tr>
+		<tr><td style="float: right;"><br>Email:</td><td><br><input type="text" class=textbox name="email" value={{email}}></td></tr>
+		<tr><td style="float: right;"><br>Password:</td><td><br><input type="password" class=textbox name="pword"></td></tr>
+		<tr><td style="float: right;"><br>Confirm Password:</td><td><br><input type="password" class=textbox name="cpword"></td></tr>
+		<tr><td style="float: right;"><br>Telephone:</td><td><br><input type="text" class=textbox name="phone"></td></tr>
+		<tr><td style="float: right;"><br></td><td><br><input type="submit" value="Sign Up" style="cursor:pointer;"></td></tr>
+		<tr><td style="float: right;"><br></td><td><br><span style="color: red;font-size:11px; ">{{msg}}</span></td></tr>
+		
+		</table><br>
+		<div></div>
+		</div>
+</form>
+
+<div id='doc' style="position: absolute;width:850px;margin:auto;border: 0px solid;">
+<div style="width:500px;margin:auto;text-align:center;border:  0px solid;">
+<br>
+<div>Doctor Sign Up</div><br><br>
+<table style="width: 400px;margin:auto;">
+<tr><td style="float: right;">*Doctor Name </td><td><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Hospital:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Specialization:</td><td><br><input type="text" class=textbox>
+</td></tr>
+<tr><td style="float: right;"><br>Address:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>City:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>State:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Pin Code:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Fax:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Telephone:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Email:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Password:</td><td><br><input type="password" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Confirm Password:</td><td><br><input type="password" class=textbox></td></tr>
+
+</table>
+<br>
+			<div style="text-align: center;"><input type="button" value="Sign Up" class=button></div>
+</div></div>
+
+<div id='hosp' style="position: absolute;width:850px;margin:auto;border: 0px solid;">
+<div style="width:500px;margin:auto;text-align:center;border:  0px solid;">
+<br>
+<div>Hospital Sign Up</div><br><br>
+<table  style="width: 400px;margin:auto;">
+<tr><td style="float: right;">*Hospital Name: </td><td><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Location:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Specialization:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Address:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Telephone:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Fax:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Telephone:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Website:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Email:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Password:</td><td><br><input type="password" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Confirm Password:</td><td><br><input type="password" class=textbox></td></tr>
+
+</table>			
+<br>
+			<div style="text-align: center;"><input type="button" value="Sign Up" class=button></div>
+</div></div>
+
+<div id='bbank' style="position: absolute;width:850px;margin:auto;border: 0px solid;">
+<div style="width:500px;margin:auto;text-align:center;border:  0px solid;">
+<br>
+<div>Blood Bank Sign Up</div><br><br>
+<table style="width: 400px;margin:auto;">
+<tr><td style="float: right;">*Blood Bank Name: </td><td><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Address:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Location/Street:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>City:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>State:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Pin Code:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Web Site:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Phone no: </td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Fax: </td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Contact Person 1:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Contact Person 2:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Email:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Password:</td><td><br><input type="password" class=textbox></td></tr>
+<tr><td><br style="float: right;">*Confirm Password:</td><td><br><input type="password" class=textbox></td></tr>
+
+</table>			
+<br>
+			<div style="text-align: center;"><input type="button" value="Sign Up" class=button></div>
+</div></div>
+
+<div id='pharmacy' style="position: absolute;width:850px;margin:auto;border: 0px solid;">
+<div style="width:500px;margin:auto;text-align:center;border:  0px solid;">
+<br>
+<div>Pharmacy Sign Up</div><br><br>
+<table style="width: 400px;margin:auto;">
+<tr><td style="float: right;">*Pharmacy Name: </td><td><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Address:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Location/Street:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>City:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>State:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Pin Code:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Web Site:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Phone no: </td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Fax: </td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Contact Person 1:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>Contact Person 2:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Email:</td><td><br><input type="text" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Password:</td><td><br><input type="password" class=textbox></td></tr>
+<tr><td style="float: right;"><br>*Confirm Password:</td><td><br><input type="password" class=textbox></td></tr>
+
+</table>			
+<br>
+			<div style="text-align: center;"><input type="button" value="Sign Up" class=button></div>
+</div></div>
+
+</div>
+</body>{%endblock%}

@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+{%block colorNutrition%}style="background:#416be0;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+  
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sugar.count}});
+    {%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sleep.count}});
+    {%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{heart.count}});
+    {%for hr in heart%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+<div id="dhtmlgoodies_tabView1">
+<!-- BMI -->
+	<div  class="dhtmlgoodies_aTab" >
+
+	<div style="margin: 25px;text-align: center;"><h2><b>Healthy Food and Food Safety</b></h2>
+		<p>Eating and physical activity patterns that are focused on consuming fewer calories, making informed food choices, and being physically active can help people attain and maintain a healthy weight, reduce their risk of chronic disease, and promote overall health.</p>
+		<p>Poor diet and physical inactivity are the most important factors contributing to an epidemic of overweight and obesity affecting men, women, and children in all segments of our society. Even in the absence of overweight, poor diet and physical inactivity are associated with major causes of morbidity and mortality.</p>
+		<p>Maintaining a calorie balance over time helps in achieving and sustaining a healthy weight. People who are most successful at achieving and maintaining a healthy weight do so through continued attention to consuming only enough calories from foods and beverages to meet their needs and by being physically active. To curb the obesity epidemic and improve health, there must be a decrease in the calories consumed and an increase in the calories expended through physical activity.</p>
+		<p>Consumption of too much sodium and too many calories from solid fats, added sugars, and refined grains makes it difficult for people to achieve the recommended nutrient intake. Hence, this should be replaced by a healthy eating pattern, which limits intake of sodium, solid fats, added sugars, and refined grains and emphasizes on nutrient-dense foods and beverages - vegetables, fruits, whole grains, fat-free or low-fat milk and milk products, seafood, lean meats and poultry, eggs, beans and peas, and nuts and seeds.</p>
+		<p>A healthy eating pattern needs not only to promote health and help to decrease the risk of chronic diseases, but it also should prevent foodborne illness. Four basic food safety principles (Clean, Separate, Cook, and Chill) work together to reduce the risk of foodborne illnesses. In addition, some foods (such as milks, cheeses, and juices that have not been pasteurized, and undercooked animal foods) pose high risk for foodborne illness and should be avoided.</p>
+		<p>The following Key Dietary Guidelines recommended by the U.S. Department of Health &amp; Human Services and the U.S. Department of Agriculture, are the most important in terms of their implications for improving health. To get the full benefit, individuals should carry out these recommendations in their entirety as part of an overall healthy eating pattern.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Balancing Calories to Manage Weight:</h3> 
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Prevent and/or reduce overweight and obesity through improved eating and physical activity behaviors.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Control total calorie intake to manage body weight. For people who are overweight or obese, this will mean consuming fewer calories from foods and beverages.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase physical activity and reduce time spent in sedentary behaviors.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Maintain appropriate calorie balance during each stage of life—childhood, adolescence, adulthood, pregnancy and breastfeeding, and older age.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Foods and Food Components to Reduce:</h3>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce daily sodium intake to less than 2,300 milligrams (mg) and further reduce intake to 1,500 mg among persons who are 51 and older and those of any age who have hypertension, diabetes, or chronic kidney disease.</p> 
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume less than 10 percent of calories from saturated fatty acids by replacing them with monounsaturated and polyunsaturated fatty acids.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume less than 300 mg per day of dietary cholesterol.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Keep trans fatty acid consumption as low as possible by limiting foods that contain synthetic sources of trans fats, such as partially hydrogenated oils, and by limiting other solid fats.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce the intake of calories from solid fats and added sugars.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Limit the consumption of foods that contain refined grains, especially refined grain foods that contain solid fats, added sugars, and sodium.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If alcohol is consumed, it should be consumed in moderation—up to one drink per day for women and two drinks per day for men—and only by adults of legal drinking age.</p>
+		
+		</div>
+		<div style="margin: 25px;"><h3>Foods and Nutrients to Increase:</h3>
+		<span>Individuals should meet the following recommendations as part of a healthy eating pattern while staying within their calorie needs.</span>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase vegetable and fruit intake.
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat a variety of vegetables, especially dark-green and red and orange vegetables and beans and peas.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume at least half of all grains as whole grains. Increase whole-grain intake by replacing refined grains with whole grains.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase intake of fat-free or low-fat milk and milk products, such as milk, yogurt, cheese, or fortified soy beverages.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose a variety of protein foods, which include seafood, lean meat and poultry, eggs, beans and peas, soy products, and unsalted nuts and seeds.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase the amount and variety of seafood consumed by choosing seafood in place of some meat and poultry.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Replace protein foods that are higher in solid fats with choices that are lower in solid fats and calories and/or are sources of oils.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use oils to replace solid fats where possible.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose foods that provide more potassium, dietary fiber, calcium, and vitamin D, which are nutrients of concern in American diets. These foods include vegetables, fruits, whole grains, and milk and milk products.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Building healthy eating Patterns:</h3>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Select an eating pattern that meets nutrient needs over time at an appropriate calorie level.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Account for all foods and beverages consumed and assess how they fit within a total healthy eating pattern.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Follow food safety recommendations when preparing and eating foods to reduce the risk of foodborne illnesses.</p>
+		</div>
+		
+	
+
+	</div>
+<!-- Fruits and Vegetables -->
+	<div  class="dhtmlgoodies_aTab" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Importance of Fruits and Vegetables</b></h2>
+		<p>Fruits and vegetables can protect your health. Most fruits and vegetables are naturally low in fat and calories and are filling. They contain essential vitamins, minerals, and fiber that may help protect you from chronic diseases. Compared with people who consume a diet with only small amounts of fruits and vegetables, those who eat more generous amounts as part of a healthful diet are likely to have reduced risk of chronic diseases, including stroke and perhaps other cardiovascular diseases, and certain cancers. To get the amount that's recommended, most people need to increase the amount of fruits and vegetables they currently eat every day.</p> 
+		<p>Fruits and vegetables can be used to help manage your weight. They can be part of a well-balanced and healthy eating plan. There are many different ways to lose or maintain a healthy weight. Using more fruits and vegetables along with whole grains and lean meats, nuts, and beans is a safe and healthy one. Helping control your weight is not the only benefit of eating more fruits and vegetables. Diets rich in fruits and vegetables may reduce the risk of some types of cancer and other chronic diseases. Fruits and vegetables also provide essential vitamins and minerals, fiber, and other substances that are important for good health.</p>
+		<p>To lose weight, you must eat fewer calories than your body uses. This doesn't necessarily mean that you have to eat less food. You can create lower-calorie versions of some of your favorite dishes by substituting low-calorie fruits and vegetables in place of higher-calorie ingredients. The water and fiber in fruits and vegetables will add volume to your dishes, so you can eat the same amount of food with fewer calories. Most fruits and vegetables are naturally low in fat and calories and are filling. Though they are lower in calories than many other foods, they do contain some calories. Eating fruits and vegetables in addition to what you usually eat will add calories and may cause a gain in weight. The key is substitution. Eating fruits and vegetables instead of some other higher-calorie foods helps in reducing weight.</p>
+		</div>
+		<div style="margin: 25px;"><span><b>Helpful tips for making fruits and vegetables part of your weight management plan:</b></span>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The best way to eating fruits and vegetables is the way nature provided—or with fat-free or low-fat cooking techniques. Try steaming your vegetables, using low-calorie or low-fat dressings, and using herbs and spices to add flavor. Some cooking techniques, such as breading and frying, or using high-fat dressings or sauces will greatly increase the calories and fat in the dish. And eat your fruit raw to enjoy its natural sweetness.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Canned or frozen fruits and vegetables are good options when fresh produce is not available. However, be careful to choose those without added sugar, syrup, cream sauces, or other ingredients that will add calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose whole fruit over fruit drinks and juices. Fruit juices have lost fiber from the fruit. It is better to eat the whole fruit because it contains the added fiber that helps you feel full. One 6-ounce serving of orange juice has 85 calories, compared to just 65 calories in a medium orange.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Whole fruit gives you a bigger size snack than the same fruit dried—for the same number of calories. A small box of raisins (1/4 cup) is about 100 calories. For the same number of calories, you can eat 1 cup of grapes.</p>
+		</div>
+	</div>	
+
+<!-- Water -->
+	<div  class="dhtmlgoodies_aTab">
+		<div style="margin: 25px;text-align: center;"><h2><b>Water</b></h2>
+			<p>Water is very essential for our bodies and is important in maintaining good health, because it is in every cell, tissue, and organ in our body. Healthy people meet their fluid needs by drinking when thirsty and drinking fluids with meals. But, the intake of fluids should be increased in hot weather or while doing vigorous physical activity.</p> 
+			<p>Most of the water needs of the body are met through the water and beverages you drink. Some of the fluid is got through the foods we eat. For example, broth soups and other foods that are 85% to 95% water such as celery, tomatoes, oranges, and melons.</p>
+			<p>Water helps the body in keeping its temperature normal, and in lubrication and cushioning of the joints. It also helps in protecting the spinal cord and other sensitive tissues by providing a physical barrier. It also gets rid of wastes through urination, perspiration and bowel movements.</p> 
+			<p>We need to drink enough water each day to replace what the body loses through normal everyday functions. Most of the loss of water from the body is through urination, perspiration or bowel movements. But, there is also a small amount of water loss during normal respiration, when the air is exhaled out. This lost water has to be replaced to prevent dehydration.</p>
+			<p>The body also needs more water during a hot climate, or during physical activity. More water is also needed during episodes of fever or diarrhea and vomiting. To stay hydrated during prolonged physical activity or hot climate, we have to drink fluid while doing the activity and also drink several glasses of water or other fluid after the physical activity is completed. Some people may have fluid restrictions because of a health problem, such as kidney disease. If your healthcare provider has told you to restrict your fluid intake, be sure to follow that advice.</p>
+		</div>
+		<div style="margin: 25px;"><span><b>Tips for increasing your fluid intake by drinking more water:</b></span>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Carry a water bottle for easy access when you are at work or running errands.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Freeze some freezer-safe water bottles. Take one with you for ice-cold water all day long.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose water instead of sugar-sweetened beverages. This tip can also help with weight management. Substituting water for one 20-ounce sugar-sweetened soda will save you about 240 calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose water instead of other beverages when eating out. Generally, you will save money and reduce calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Give your water a little pizzazz by adding a wedge of lime or lemon. This may improve the taste, and you just might drink more water than you usually do.</p>
+		</div>
+	</div>
+<!-- Vitamins & Nutritional Supplements  -->
+	<div  class="dhtmlgoodies_aTab" style="height: 450px;"><br>
+	</div>
+	
+	<script type="text/javascript">
+	initTabs('dhtmlgoodies_tabView1',Array('Healthy Food','Fruits Vegetables','Water'),0,980,Array(true,true));
+	</script>
+</div>
+<div class="footer" style="text-align: left;margin-left: 5px;"><a href="">&copy; 2011 eHealth Ideas LLC</a><br><br></div>
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

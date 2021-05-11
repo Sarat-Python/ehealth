@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{%block colorrecords%}style="background:#416be0;"{%endblock%}
+{% block content %}
+<div id=insurance class=text style="border: 0px solid;">
+<a href="/uploadrecord" style="background-color:#7cb0b3;">Add medical Record</a>
+<table style="width:500px;margin:auto;border: 0px solid;">
+<tr><td colspan="2" align="center"><br>Insurance Details</td></tr>
+<tr><td><br>Type Of Insurance:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Company Name:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Plan Name:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Plan Id:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Group Number:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Name On The Card:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Subscription/policy ID :</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Insurance phone:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Coverage Start Date:</td><td><br>Coverage End Date:</td></tr>
+<tr><td><form name="testform">
+	<input type="text" name="testinput" />
+	<script type="text/JavaScript">
+	new tcal ({
+		// formname
+		'formname': 'testform',
+		// inputname
+		'controlname': 'testinput'
+	});
+
+	</script>
+</form></td><td>
+<form name="testformend">
+	<input type="text" name="testinputend" />
+	<script type="text/JavaScript">
+	new tcal ({
+		// formname
+		'formname': 'testformend',
+		// inputname
+		'controlname': 'testinputend'
+	});
+
+	</script></form></td></tr>
+<tr><td colspan="2">First note or journal entry :</td></tr>
+<tr><td colspan="2"><textarea style="width: 450px;"></textarea></td></tr>
+
+</table>
+<br>
+			<div style="text-align: center;"><input type="button" value="Add" class=button><input type="reset" value="Reset" ></div>
+</div>
+
+{%endblock%}

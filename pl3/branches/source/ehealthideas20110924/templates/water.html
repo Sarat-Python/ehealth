@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% block foodcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+  
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sugar.count}});
+    {%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sleep.count}});
+    {%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{heart.count}});
+    {%for hr in heart%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+<div class="content">
+<div style="margin: 25px;text-align: center;"><h2><b>Water</b></h2>
+			<p>Water is very essential for our bodies and is important in maintaining good health, because it is in every cell, tissue, and organ in our body. Healthy people meet their fluid needs by drinking when thirsty and drinking fluids with meals. But, the intake of fluids should be increased in hot weather or while doing vigorous physical activity.</p> 
+			<p>Most of the water needs of the body are met through the water and beverages you drink. Some of the fluid is got through the foods we eat. For example, broth soups and other foods that are 85% to 95% water such as celery, tomatoes, oranges, and melons.</p>
+			<p>Water helps the body in keeping its temperature normal, and in lubrication and cushioning of the joints. It also helps in protecting the spinal cord and other sensitive tissues by providing a physical barrier. It also gets rid of wastes through urination, perspiration and bowel movements.</p> 
+			<p>We need to drink enough water each day to replace what the body loses through normal everyday functions. Most of the loss of water from the body is through urination, perspiration or bowel movements. But, there is also a small amount of water loss during normal respiration, when the air is exhaled out. This lost water has to be replaced to prevent dehydration.</p>
+			<p>The body also needs more water during a hot climate, or during physical activity. More water is also needed during episodes of fever or diarrhea and vomiting. To stay hydrated during prolonged physical activity or hot climate, we have to drink fluid while doing the activity and also drink several glasses of water or other fluid after the physical activity is completed. Some people may have fluid restrictions because of a health problem, such as kidney disease. If your healthcare provider has told you to restrict your fluid intake, be sure to follow that advice.</p>
+		</div>
+		<div style="margin: 25px;"><span><b>Tips for increasing your fluid intake by drinking more water:</b></span>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Carry a water bottle for easy access when you are at work or running errands.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Freeze some freezer-safe water bottles. Take one with you for ice-cold water all day long.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose water instead of sugar-sweetened beverages. This tip can also help with weight management. Substituting water for one 20-ounce sugar-sweetened soda will save you about 240 calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose water instead of other beverages when eating out. Generally, you will save money and reduce calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Give your water a little pizzazz by adding a wedge of lime or lemon. This may improve the taste, and you just might drink more water than you usually do.</p>
+		</div>
+	</div>
+{% endblock %}

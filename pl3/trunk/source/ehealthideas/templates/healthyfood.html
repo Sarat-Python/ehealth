@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% block foodcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+  
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sugar.count}});
+    {%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sleep.count}});
+    {%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{heart.count}});
+    {%for hr in heart%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+<div class="content">
+<div style="margin: 25px;text-align: center;"><h3><b>Health and Food Safety</b></h3>
+		<p>Eating and physical activity patterns that are focused on consuming fewer calories, making informed food choices, and being physically active can help people attain and maintain a healthy weight, reduce their risk of chronic disease, and promote overall health.</p>
+		<p>Poor diet and physical inactivity are the most important factors contributing to an epidemic of overweight and obesity affecting men, women, and children in all segments of our society. Even in the absence of overweight, poor diet and physical inactivity are associated with major causes of morbidity and mortality.</p>
+		<p>Maintaining a calorie balance over time helps in achieving and sustaining a healthy weight. People who are most successful at achieving and maintaining a healthy weight do so through continued attention to consuming only enough calories from foods and beverages to meet their needs and by being physically active. To curb the obesity epidemic and improve health, there must be a decrease in the calories consumed and an increase in the calories expended through physical activity.</p>
+		<p>Consumption of too much sodium and too many calories from solid fats, added sugars, and refined grains makes it difficult for people to achieve the recommended nutrient intake. Hence, this should be replaced by a healthy eating pattern, which limits intake of sodium, solid fats, added sugars, and refined grains and emphasizes on nutrient-dense foods and beverages - vegetables, fruits, whole grains, fat-free or low-fat milk and milk products, seafood, lean meats and poultry, eggs, beans and peas, and nuts and seeds.</p>
+		<p>A healthy eating pattern needs not only to promote health and help to decrease the risk of chronic diseases, but it also should prevent foodborne illness. Four basic food safety principles (Clean, Separate, Cook, and Chill) work together to reduce the risk of foodborne illnesses. In addition, some foods (such as milks, cheeses, and juices that have not been pasteurized, and undercooked animal foods) pose high risk for foodborne illness and should be avoided.</p>
+		<p>The following Key Dietary Guidelines recommended by the U.S. Department of Health &amp; Human Services and the U.S. Department of Agriculture, are the most important in terms of their implications for improving health. To get the full benefit, individuals should carry out these recommendations in their entirety as part of an overall healthy eating pattern.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Balancing Calories to Manage Weight:</h3> 
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Prevent and/or reduce overweight and obesity through improved eating and physical activity behaviors.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Control total calorie intake to manage body weight. For people who are overweight or obese, this will mean consuming fewer calories from foods and beverages.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase physical activity and reduce time spent in sedentary behaviors.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Maintain appropriate calorie balance during each stage of life—childhood, adolescence, adulthood, pregnancy and breastfeeding, and older age.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Foods and Food Components to Reduce:</h3>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce daily sodium intake to less than 2,300 milligrams (mg) and further reduce intake to 1,500 mg among persons who are 51 and older and those of any age who have hypertension, diabetes, or chronic kidney disease.</p> 
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume less than 10 percent of calories from saturated fatty acids by replacing them with monounsaturated and polyunsaturated fatty acids.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume less than 300 mg per day of dietary cholesterol.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Keep trans fatty acid consumption as low as possible by limiting foods that contain synthetic sources of trans fats, such as partially hydrogenated oils, and by limiting other solid fats.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce the intake of calories from solid fats and added sugars.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Limit the consumption of foods that contain refined grains, especially refined grain foods that contain solid fats, added sugars, and sodium.</p>
+			
+		
+		</div>
+		<div style="margin: 25px;"><h3>Foods and Nutrients to Increase:</h3>
+		<span>Individuals should meet the following recommendations as part of a healthy eating pattern while staying within their calorie needs.</span>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase vegetable and fruit intake.
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat a variety of vegetables, especially dark-green and red and orange vegetables and beans and peas.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Consume at least half of all grains as whole grains. Increase whole-grain intake by replacing refined grains with whole grains.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase intake of fat-free or low-fat milk and milk products, such as milk, yogurt, cheese, or fortified soy beverages.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose a variety of protein foods, which include seafood, lean meat and poultry, eggs, beans and peas, soy products, and unsalted nuts and seeds.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase the amount and variety of seafood consumed by choosing seafood in place of some meat and poultry.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Replace protein foods that are higher in solid fats with choices that are lower in solid fats and calories and/or are sources of oils.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use oils to replace solid fats where possible.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose foods that provide more potassium, dietary fiber, calcium, and vitamin D, which are nutrients of concern in American diets. These foods include vegetables, fruits, whole grains, and milk and milk products.</p>
+		</div>
+		<div style="margin: 25px;"><h3>Building healthy eating Patterns:</h3>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Select an eating pattern that meets nutrient needs over time at an appropriate calorie level.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Account for all foods and beverages consumed and assess how they fit within a total healthy eating pattern.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Follow food safety recommendations when preparing and eating foods to reduce the risk of foodborne illnesses.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>	
+		</div>
+	</div>
+{% endblock %}

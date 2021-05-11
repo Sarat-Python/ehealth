@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Skin -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h3 style="text-align: center;"><b>Skin Care Tips</b></h3>
+		<p>Skin care is important especially if we want to keep our skin young-looking all the time. More than a great wardrobe or a skilled hand with make-up, healthy glowing skin is the key to turning heads. Skin care often involves cleansing which keeps the skin clean and free from dirt, exfoliating which removes dead skin cells, which makes our skin look healthier as well as making it smoother and lastly moisturizing, this is important because when skin is well moisturized it will feel soft and supple and youthful all at the same time. </p>
+		<h3>Sunscreen </h3>
+		<p>It provides a transparent layer of protection on the skin which reflects the ultraviolet or UV rays of the sun. It comes in different forms such as lotion, sprays, cream and a lot more. Sunscreen is a very important thing that any person should bring whenever he or she is exposed under the sun for quite some time.   </p>
+		<h3>Consider Retinoids</h3>
+		<p>Dermatologists say that starting out slowly, applying a pea-sized amount of retinoid every second or third night can help your skin adjust to the powerful ingredient.
+		Consider an over-the-counter cream, gel, or serum containing retinol. This nonprescription version of a retinoid works more gradually and gently but is still effective in rejuvenating your skin.</p>
+		<h3>Keep Skincare Simple</h3>
+		<p>The products necessary for beautiful skin aren't glamorous, and include a simple cleanser, sunscreen, moisturizer, and a retinoid or retinol.</p>
+		<p>What's more, the simpler your skincare regimen, the more likely you are to stick with it.</p>
+		<h3>Give Products Time to Work</h3>
+		<p>Just as using a half dozen or more products at any one time can overload your skin with too many ingredients, so can changing the products you're using every couple of weeks.</p>
+		<p>And if your skin is reacting with swelling, redness, or burning to a new product you've tried, stop using it immediately.
+		But in general, finish the entire tube or bottle of a skincare potion before you write it off as ineffective.</p>
+		<h3>A Balanced Life Leads to Your Best Skin</h3>
+		<p>Activities like yoga and meditation help keep stress in check, which in turn reduces the release of stress hormones that worsen conditions like acne, eczema, and rosacea.</p>
+		<p>Meditating regularly may even make treatment more effective. In one study, people with psoriasis, a condition that causes itchy, scaly skin, listened to meditation tapes while they received ultraviolet light treatments. They healed four times as fast as non mediators.</p>
+		<p>The key to gorgeous skin turns out to be a mix of science, common sense, overall good health habits, and a simple stick-to-it skincare regimen. The spinach smoothie is strictly optional.
+		</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>		
+		</div>
+	</div>	
+		
+{% endblock%}

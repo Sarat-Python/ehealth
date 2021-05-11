@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>eHealth</title>
+	 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<link rel="stylesheet" href="/static/css/ehealth.css" type="text/css" media="screen">
+	<script type="text/javascript" src="/static/js/ajax.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/ehealth.js"></script>
+	<script type="text/javascript" src="/static/js/javascript.js"></script>
+	<script type="text/javascript" src="/static/js/popup.js"></script>
+	<script type="text/javascript" src="/static/js/popupdialog.js"></script>
+		<style type="text/css">
+			/*demo page css*/
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		</style>
+			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" href="../static/css/ehealth.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="../static/css/popup.css" type="text/css" media="screen">
+		<script type="text/javascript" src="../static/js/popupdialog.js"></script>
+		<script type="text/javascript" src="../static/js/popup.js"></script>
+	<script type="text/javascript" src="../static/js/ajax.js"></script>
+	<script type="text/javascript" src="../static/js/ehealth.js"></script>
+	<script type="text/javascript" src="../static/js/calendar_us.js">
+	</script>
+		<style type="text/css">
+			/*demo page css*/
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		</style>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			   
+			$('.login').click( function () {
+				
+				$('.login_box').slideToggle(400);
+				
+			});
+		$(".login_box").mouseup(function() {
+					return false
+				});
+				$(document).mouseup(function(e) {
+					if($(e.target).parent(".login").length==0) {
+						$(".login").removeClass("login_box");
+						$(".login_box").hide();
+					}
+				});		
+					   
+		});
+		</script>
+</head>
+<body>
+{% if session.username %}
+<div style="float: right;text-align:center;padding: 3px;-webkit-border-radius:8px;	border-radius: 0px 0px 8px 8px;-moz-border-radius-topright: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;">Welcome {{session.username}}</div>
+{% else %}
+<div style="float: right;width:90px;text-align:center;background-color: #b9121b;padding: 3px;-webkit-border-radius:8px;	border-radius: 0px 0px 8px 8px;-moz-border-radius-topright: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;"><a href="#" class=login style="text-decoration: none;color: white;">Sign In</a></div>
+<div style="float: right;margin-right:3px;;width:90px;text-align:center;background-color: #416be0;padding: 3px;-webkit-border-radius:8px;	border-radius: 0px 0px 8px 8px;-moz-border-radius-topright: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;"><a href="/signup" style="text-decoration: none;color: white;">Sign Up</a></div>
+<div class="login_wrap" style="margin-top: -70px;">
+		  <div class="login_box">
+		    <div class="login_form">
+			<form method="post" action="/signin" >
+			<table>
+			<tr><td class="text_style" >User Name</td><td><input type="text" name="email" class="input"  /></td></tr>
+			<tr><td class="text_style">Password</td><td><input type="password" name="pwd" class="input"  /></td></tr>
+			<tr><td></td><td style="text-align: center;"><input type="submit" class="submit" value=" Log In " /></td></tr>
+			</table>
+		    </form>
+		    </div>
+		  </div>
+		</div>{%endif%}
+	<div><img alt="eHealth" src="/static/images/ehealthideas.png" style="text-align:center;">{{msg}}</div>
+	<div><ul id="navigation-1">
+			<li style="border-right: 1px solid #ffffff;"><a href="/" title="Wellness" {%block colorselfhelp%}{%endblock%}>Wellness</a></li>
+			<li style="border-right: 1px solid #ffffff;"><a href="medicalcontacts" {%block colorcontacts%}{%endblock%} title="Medical Contacts">Medical Contacts</a></li>
+			<li style="border-right: 1px solid #ffffff;"><a href="fixappointment" title="Fix Appointment" {%block colorapp%}{%endblock%}>Fix Appointment</a></li>
+			<li style="border-right: 1px solid #ffffff;"><a href="medicalrecords" title="Medical Records" {%block colorrecords%}{%endblock%}>Medical Records</a></li>
+			<li style="border-right: 1px solid #ffffff;"><a href="#" title="User Name">User Name</a>
+				<ul class="navigation-2"><li><a >father</a></li>
+				<li><a >Mother</a></li>
+				<li><a>Add New Profile</a></li></ul>
+			</li>
+			<li style="border-right: 1px solid #ffffff;"><a href="myprofile" {%block coloruserpage%}{%endblock%} title="Profile">Profile</a>
+				{% if session.username %}<ul class="navigation-2"><li><a href="/signout" >Signout</a></li></ul>{%endif%}
+			</li>
+		</ul>
+	</div>
+{% block content %}{% endblock%}
+<div style="font-size: 13px;text-align: center;"><span class="terms"><a href="" style="text-decoration: none;color: black;">About Us</a> &nbsp; |&nbsp; <a href="" style="text-decoration: none;color: black;">&copy; 2011 eHealth Ideas LLC</a></span></div>
+</body>
+</html>

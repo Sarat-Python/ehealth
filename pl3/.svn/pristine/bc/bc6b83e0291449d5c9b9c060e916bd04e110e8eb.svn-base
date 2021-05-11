@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block kidscolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Infants(1-2 year old)</b></h2>
+		<p>During this time, your child is becoming increasingly more mobile, and aware of himself and his surroundings. Her desire to explore new objects and people is also increasing. During this stage, your toddler will show greater independence, begin to show defiant behavior, recognize himself in pictures or a mirror, and imitate the behavior of others, especially adults and older children.</p>
+		<p>Your toddler will also be able to recognize names of familiar people and objects, form simple phrases and sentences, and follow simple instructions and directions.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><h3>Positive Parenting</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Keep reading to your toddler daily.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Ask her to find objects for you or name body parts and objects.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Play matching games with your toddler.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Encourage him to explore and try new things.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Help to develop your toddler’s language by talking with her.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Encourage your toddler’s curiosity and ability to recognize common objects by taking field trips together to the park or a bus ride.</p>
+		</div>	
+		<div>
+		<h3>Child Safety First</h3>
+		<p>As your child is becoming increasingly mobile, his ability to encounter more dangers is increasing as well. Here are a few recommendations to help keep your growing toddler safe.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Toddler proof your home by placing plug covers on all unused electrical outlets.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Keep kitchen appliances, irons, and heaters from the reach of your toddler. Turn pot handles toward the back of the stove.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Lock up medicines, household cleaners and poisons.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Keep sharp objects such as scissors and pens in a safe place.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Never leave her alone in the car, even for a few moments.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Store any guns in a safe place out of his reach.</p>
+		</div>			
+		
+	</div>	</div>	
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

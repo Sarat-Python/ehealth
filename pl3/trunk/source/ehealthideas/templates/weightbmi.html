@@ -1,0 +1,154 @@
+{% extends 'base.html' %}	
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+
+</script>
+
+<div id="dhtmlgoodies_tabView1">
+<!-- BMI -->
+	<div class="content">
+	<div style="text-align: center;"><span><h2><b>Body Mass Index</b></h2></span></div>
+		<div style="height: 330px; margin-top:5px;">
+				<div style="float: left;width:480px;border: 0px solid #a1afbe;height:300px;;margin-top: 20px;">
+					<form method="POST" action="/weightbmi" name="BMIform"><br>
+						
+						<table style="margin: auto;font-size: 14px;">
+						  <tr><td width="50">Weight</td><td> <input type="text" name="wt" size="4"><select name="wu" size="1" onchange="poundsAndKilos(this.form)"><option selected="">pounds</option><option>kilograms</option></select></td>
+								<td><em><font size="1">can convert lbs to kg</font></em></td>
+						  </tr>
+						  <tr><td>Height</td><td colspan="2"> <input type="text" name="ht" size="4">
+						    	<select name="hu" size="1" onchange="inchesCm(this.form)"><option selected>inches</option><option>cm</option></select>&nbsp;or 
+						    	<select name="htf" size="1" onchange="feetAndInches(this.form)">
+						        <option value="1">1'</option><option value="2">2'</option><option value="3">3'</option><option value="4">4' </option><option value="5" selected="">5' </option><option value="6">6' </option> <option value="7">7' </option>
+						        </select>
+						        <select name="hti" size="1" onchange="feetAndInches(this.form)">
+						        <option value="0">0'' </option><option value="1">1'' </option><option value="2">2'' </option><option value="3">3'' </option><option value="4">4'' </option><option value="5">5'' </option><option value="6" selected="">6'' </option><option value="7">7'' </option> <option value="8">8'' </option> <option value="9">9'' </option> <option value="10">10'' </option><option value="11">11'' </option>
+						        </select></td>
+						  </tr>
+						  <tr><td>&nbsp;</td><td>
+								<br><input name="button" onclick="CalcIt(this.form)" type="button" value="Calculate" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;
+								<input name="button" type="reset" value="Reset" style="font-size: 10px;"></td>
+						  </tr>
+						  <tr><td colspan="3"><font size="3">Body Mass Index:</font><input maxlength="5" name="bmi" size="5" type="text" style="width:80px;font-size: 20px;border: 0px;text-align: center;background-color: transparent;"></td><td></td>
+						  </tr>
+						</table>
+						<div style="visibility: hidden;"><input type="text" name="user" value={{session.username}}><input type="text" name="Years" size="4" ><input type="text" name="Gender" value="Woman" ><input type="text" name="AgeCat" value="Adult"></div>
+						<div style="margin: auto;text-align: center;margin-top: -40px;">    
+							<table style="margin: auto;">
+								<tr><td>Collection Date</td><td><input type="text" name="bmidate" /></td>
+									<td><script type="text/JavaScript">
+										new tcal ({
+											// formname
+											'formname': 'BMIform',
+											// inputname
+											'controlname': 'bmidate'
+										});
+										</script></td>
+								</tr>
+								<tr><td>BMI Goal</td><td><input type="text" name="bmigoal"></td></tr>
+							</table>
+						</div>
+						<div style="text-align: center;"><input name="button" type="submit" value="Add entry" style="font-size: 10px;"><br></div>
+				</form>  
+							</div>
+				
+					<div id="dhtmlgoodies_tabView2" style="float: right;margin-right:15px;" >
+						<span style="margin-left: 200px;">Track record</span>
+						<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top:5px;">
+					 		<div id="BMI_CHART"></div>
+						</div>
+						</div>
+						<div class="dhtmlgoodies_aTab" >	
+							<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+							<table class="sample" style="margin: auto;">
+							<tr><th>Date</th><th>Weight</th><th>Height</th><th>BMI</th><th>BMI Goal</th></tr>
+							{%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+							<tr><td style="text-align: center;">{{bmi.collectionDate}}</td><td style="text-align: center;">{{bmi.weight}}</td><td style="text-align: center;">{{bmi.height}}</td><td style="text-align: center;">{{bmi.bmi}}</td><td style="text-align: center;">{{bmi.bmiGoal}}</td></tr>
+							{%endifequal%}
+							{%endfor%}
+							</table>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+					initTabs('dhtmlgoodies_tabView2',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+					</script>
+			</div>
+<div style="border: 0px solid #a1afbe;margin: 0px 25px 25px;">
+
+    <div><h3><b>BMI:</b></h3></div>
+		<p>Body Mass Index (BMI) is a number calculated from a person's weight and height. BMI provides a reliable indicator of body fatness for most people and is used to screen for weight categories that may lead to health problems.</p>
+		<p> BMI is used as a screening tool to identify possible weight problems for adults.The BMI is easy to use and fairly accurate, making it beneficial to the average individual. It also helps monitor the general public's health and risk level.</p>
+		<p>Calculating BMI is one of the best methods for population assessment of overweight and obesity. The calculation requires only height and weight, it is inexpensive and easy to use for clinicians and for the general public.</p>
+		<p> The use of BMI allows people to compare their own weight status to that of the general population.</p>
+	<div style="font-weight: bold;"><h3>BMI categories:</h3>
+		<div style="text-align: center;">
+		   <!-- <img src="/static/images/bmi.png" width=300px/> -->
+		     <table class="main" style="width:300px;" >
+		<tr><th style="background-color: #A7C942;">BMI</th><th >Weight Status</th></tr>
+		<tr><td >Below 18.5</td><td>Underweight</td></tr>
+		<tr class="alt"><td >18.5-24.9</td><td>Normal</td></tr>
+		<tr><td>25.0-29.9</td><td>Overweight</td></tr>
+		<tr class="alt"><td>30 and Above</td><td>Obese</td></tr>
+			</table>	
+		</div>
+	</div>
+			<p>The BMI ranges are based on the relationship between body weight and disease and death.Overweight and obese individuals are at increased risk for many diseases and health conditions, including the following: </p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Hypertension
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Dyslipidemia (for example: high LDL cholesterol, low HDL cholesterol, or high levels of triglycerides)
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Type 2 diabetes
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Coronary heart disease
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Stroke
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Gallbladder disease
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Osteoarthritis
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Sleep apnea and respiratory problems
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Some cancers (endometrial, breast, and colon)
+			<p>The correlation between the BMI number and body fatness is fairly strong; however the correlation varies by sex, race, and age.</p>	
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; At the same BMI, women tend to have more body fat than men.
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; At the same BMI, older people, on average, tend to have more body fat than younger adults. 
+			<p>Highly trained athletes may have a high BMI because of increased muscularity rather than increased body fatness.
+			Although the BMI number is calculated the same way for children and adults, the criteria used to interpret the meaning of the BMI number for children and teens are different from those used for adults. For children and teens, BMI age- and sex-specific percentiles are used for two reasons:</p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The amount of body fat changes with age.
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The amount of body fat differs between girls and boys.
+			<p>Because of these factors, the interpretation of BMI is both age- and sex-specific for children and teens. The CDC BMI-for-age growth charts take into account these differences and allow translation of a BMI number into a percentile for a child's sex and age.For adults, on the other hand, BMI is interpreted through categories that are not dependent on sex or age.</p>
+			<div style="font-weight: bold;"><h3>Control Your Weight:</h3></div>
+			<p>Changing the way you approach weight loss can help you be more successful at weight management. Most people who are trying to lose weight focus on just the goal of weight loss. However, setting the right goals and focusing on lifestyle changes such as following a healthy eating plan, watching portion sizes, being physically active, and reducing sedentary time are much more effective.</p>
+			<p>To lose weight, it's important to make lifestyle changes with a focus on reducing calories from food and beverages, a healthy eating plan, and portion control. This section will provide you with guidance and tools on how to eat right. Over time, these changes will become part of your everyday routine.</p>
+			<div style="font-weight: bold;"><h3>Healthy Eating Plan:</h3></div>
+			<p>A healthy eating plan gives your body the nutrients it needs every day while staying within your daily calorie goal for weight loss. A healthy eating plan also will lower your risk for heart disease and other health conditions.</p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Emphasizes fruits, vegetables, whole grains, and fat-free or low-fat milk and milk products</p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Includes lean meats, poultry, fish, beans, eggs, and nuts</p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Is low in saturated fats, trans fat, cholesterol, salt (sodium), and added sugars</p>
+			<p style="text-indent: 15px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Controls portion sizes</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+			</div>
+	</div>
+
+</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if bmimsg %}alert('{{bmimsg}}'){%endif%}
+</script>
+{% endblock %}

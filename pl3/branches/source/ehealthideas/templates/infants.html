@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block kidscolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Infants(0-1 year old)</b></h2>
+		<p>The early years of a child's life are crucial for cognitive, social and emotional development.Â  Therefore, it is important that we take every step necessary to ensure that children grow up in environments where their social, emotional and educational needs are met.</p>
+		</div>
+		<div style="margin:25px;">
+		<div style="height:180px;border:0px solid;"><span style="width:300px;float:right;margin-top:0px;margin-left:50px;border:0px solid;"><img src="/static/images/infant.jpg" height="200px" width="180px"></span>
+		<p>Cognitive development for your baby means the learning process of memory, language, thinking and reasoning. Your baby is learning to recognize the sound of your voice. She is also learning to focus her vision from the periphery or the corner of her eyes to the center. Language development is more than uttering sounds (â€œbabbleâ€�), or mama/dada.</p>
+		<p>Listening, understanding, and knowing the names of people and things are all components of language development. During this stage, your baby is also developing bonds of love and trust with you. The way you cuddle, hold, and play with your baby will set the basis for how he will interact with you and others.</p>
+		</div>
+		<div style="margin-top:-20px;"><h3>Positive Parenting</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Talk to your baby. It is soothing to hear your voice.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Read to your baby. This helps her develop and understand language and sounds.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Sing to your baby.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Play music. This helps your baby develop a love for music and math.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; When your baby makes sounds, answer him by repeating and adding words. This will help him learn to use language.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Praise your baby and give him lots of loving attention.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Spend time cuddling and holding your baby. This helps her feel cared for and secure.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  The best time to play with your baby is when heâ€™s alert and relaxed. Watch your baby closely for signs of being tired or fussy so that you can take a break.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Parenting can be hard work! Take care of yourself physically, mentally, and emotionally. It is easier to enjoy your new baby and be a positive, loving parent when you are feeling good yourself.</p>
+		</div>	
+		<div>
+		<h3>Child Safety First</h3>
+		<p>Now that your newborn is at home, it is time to make sure that your home is a safe place. Look around your home for household items that might present a possible danger to your baby.</p>
+		<p> As a parent, it is your responsibility to ensure that you create a safe environment for your baby. It is also important that you take the necessary steps to make sure that you are mentally and emotionally ready for your new baby. </p>
+		<p><strong>Here are a few tips to keep your baby safe during her first year of life:</strong></p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;It is important that you never shake your newborn baby. Newborn babies have very weak neck muscles that are not yet able to support their heads. If you shake your baby you can damage his brain and delay normal development.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;To prevent SIDS (Sudden Infant Death Syndrome), it is recommended that you always put your baby to sleep on her back. </p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Place your baby in a car safety seat every time he rides in the car. The safest place for his safety seat is in the back seat of the car. Children who are less than one year OR are less than 20 pounds should be placed in a rear-facing car seat.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;To prevent your baby from choking, cut her food into small bites. Donâ€™t allow your baby to play with anything that may cover her face or is easy for her to swallow.Â </p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Never carry hot liquids or food near your baby or while holding him.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Immunizations (shots) are important to protect your childâ€™s health and safety. Because children are susceptible to many potentially serious diseases, it is important that your child receive the proper immunizations. Please consult your local health care provider to ensure that your child is up-to-date on her childhood immunizations.</p>
+		</div>			
+		
+	</div>	</div>	
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

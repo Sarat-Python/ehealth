@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block mencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Belly fat in men -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h2 style="text-align: center;"><b>Belly fat in men</b></h2>
+		<p>Obesity is a growing problem these days. Be it teenagers, aged people or adolescents, fatness is a problem for many. Other major problem with obesity is abdominal fats. Usually fats start accumulating in the abdominal area. People who have this problem do not gain weight overall, but only suffer from the problem of abdominal obesity or belly fat.</p>
+		<h3>Belly fat a big concern for Men: </h3>
+		<p>People who gain belly fat are at greater risk of serious health problems, even death, than are people who accumulate fat in other areas — and men are more likely than women to gain weight around the waist. Regardless of your overall weight, having a large amount of belly fat increases your risk of:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Heart disease</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;High blood pressure</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Stroke</p>
+		<div style="float:right;margin-right:35px;"><img src="static/images/bell.jpg"></div>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Some types of cancer</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Type 2 diabetes</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Insulin resistance</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;High triglycerides</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Low levels of high-density lipoprotein (HDL), or "good," cholesterol</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Metabolic syndrome</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Sleep apnea</p>
+		<p>How can you tell if you have too much belly fat?</p>
+		<p>Your waist size is a good indicator of whether you have too much belly fat. Although measurements that compare your hip and waist circumference (waist-to-hip ratio) or compare your height and weight (body mass index) are more precise, your waist size alone can give you a good estimate. For most men, the risk factors for heart disease and other diseases increase with a waist size greater than 40 inches (102 centimeters).</p>
+		<p>To measure your waist:</p>
+			<div style="float:right;margin-right:35px;"><img src="static/images/belly.jpg"></div>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Place a tape measure around your bare abdomen just above your hipbone.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Pull the tape measure until it fits snugly around you but doesn't push into your skin.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Make sure the tape measure is level all the way around.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Relax, exhale and measure your waist — no sucking in your belly!</p>
+		<h3>Does age play a role in gaining belly fat?</h3>
+		<p>As you age, you lose muscle — especially if you're not physically active. Muscle loss can slow the rate at which your body burns calories. In turn, if you don't limit your calories or increase your physical activity, you may gain weight.</p>
+		<h3>Is belly fat inherited?</h3>
+		<p>Your genes can affect your chances of being overweight or obese, as well as where you carry extra fat on your body. For most men, however, the problem likely has more to do with lifestyle than inherited traits.</p>
+		<h3>Can you really get a beer belly from drinking?</h3>
+		<p>Drinking excess alcohol can cause you to gain belly fat — the "beer belly." However, beer alone isn't to blame. Drinking too much alcohol of any kind can increase belly fat, although some research suggests wine may be an exception. If you drink alcohol, do so only in moderation. The less you drink, the fewer calories you'll consume and the less likely you'll be to gain belly fat.</p>
+		<p>Prevention of malaria involves protecting yourself against mosquito bites and taking anti malarial medicines. But public health officials strongly recommend that young children and pregnant women avoid traveling to areas where malaria is common.</p>
+		<h3>How do you get rid of belly fat?</h3>
+		<p>Whether you're trying to lose belly fat or trim fat from another part of your body, weight-loss basics remain the same:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Reduce calories.</strong> Slim down your portion sizes. Replace your usual fare with healthy foods that contain fewer calories. At restaurants, share with your buddies — or eat half your meal and take the rest home for another day.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Increase physical activity.</strong> For most healthy adults, the Department of Health and Human Services recommends 150 minutes a week of moderate aerobic activity or 75 minutes of vigorous aerobic activity, in addition to strength training. You may need to do more to lose weight and keep it off. If you can't set aside time for longer workouts, try shorter spurts of activity throughout the day. Start with a walk after dinner or a game of catch with your kids.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;After you shed excess pounds, maintain your weight loss with a healthy diet and regular physical activity.</p>
+		<p>Belly fat can be lost by exercises, diet plan, check on intake of calories, changing your lifestyle, etc. Certain foods help you lose weight without starving. While working out at the gym, there are a set of exercises that help you work on the abdominal obesity. All these are best ways to lose belly fat.</p>
+		<p>Belly fat should be controlled as soon as it starts accumulating. Though you can lose the fats at a later stage, but the more the fats, the more difficult it is shedding them. Also, if the fats keep on accumulating on your belly, it will cause many health problems and then you will have to deal with these problems while working hard to lose fats. If you do not work on it till it gets severe, you might not be able to resort to measures like natural ways of losing belly fats and exercises.</p>
+		<h3>Can you reduce belly fat with sit-ups?</h3>
+		<p>Sit-ups help make your abdominal muscles stronger, but spot exercises alone won't specifically reduce belly fat. The best way to shrink your waist size is to lower your total body fat through healthy eating and regular physical activity.</p>
+		<p><strong>Sit-ups help make your abdominal muscles stronger, but spot exercises alone won't specifically reduce belly fat. The best way to shrink your waist size is to lower your total body fat through healthy eating and regular physical activity.</strong></p>
+				</div>
+	</div>	
+{% endblock%}

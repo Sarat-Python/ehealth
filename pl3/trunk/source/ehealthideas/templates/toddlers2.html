@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block kidscolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Toddlers(2-3 years old)</b></h2></div>
+		<div style="margin:25px;">
+		<h3>Developmental Milestones:</h3>
+		<p>Because of your child’s growing desire to assert her independence, this stage is often called the “terrible twos.” However, this can be an exciting time for you and your toddler. He will experience huge intellectual, social, and emotional changes that will help him to explore his new world, and make sense of it.</p>
+		<p>During this stage, your toddler will be able to follow two- or three-phrase commands, sort objects by shape and color, imitate the actions of adults and playmates, and express a wide range of emotions.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><h3>Positive Parenting</h3>
+		<div style="float:right;margin-right:35px;"><img src="static/images/toddlers.jpg"></div>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Set up a special time to read books with your toddler.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Encourage your child to engage in pretend play.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Play parade or follow the leader with your toddler.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Help your child to explore her surroundings by taking her on a walk or wagon ride.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Encourage your child to tell you his name and age.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Teach your child simple songs like Itsy Bitsy Spider, or other cultural childhood rhymes.</p>
+		</div>	
+		<div>
+		<h3>Child Safety First</h3>
+		<p>Encourage your toddler to sit when eating and to chew her food thoroughly.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Check toys often for loose or broken parts.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Encourage your toddler not to put pencils or crayons in his mouth when coloring or drawing.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Never leave your toddler near or around water (that is, bathtubs, pools, ponds, lakes, whirlpools, or the ocean) without someone watching her.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Never drink hot objects while your child is sitting on your lap. Sudden movements can cause a spill.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+		</div>			
+	</div>	</div>	
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

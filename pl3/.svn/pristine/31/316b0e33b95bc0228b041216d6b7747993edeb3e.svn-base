@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart7);
+
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+
+
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function testfields(){
+	if(isNaN(document.getElementById('wrktme').value) || !(document.getElementById('wrktme').value)){
+		alert("Please enter only Numerics");
+		document.getElementById('wrktme').focus();
+		return false;
+	}
+	else
+		if(isNaN(document.getElementById('exrcsegoal').value) || !(document.getElementById('exrcsegoal').value)){
+			alert("Please enter only Numerics");
+			document.getElementById('exrcsegoal').focus();
+			return false;
+		}
+		else
+			document.work.action="/exercise";
+}
+</script>
+<div class="content">
+ <div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h3><b>Swimming</b> </h3></span></div> 
+		<div  style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 0px solid #a1afbe;margin-top: 20px;" >
+				<form  name="swim" id="swim" action="/fitswimming" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Swimming Distance</td><td><br><input type="text" class=dialogtextbox name=swimdst>&nbsp;&nbsp;meters</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=swimgoal>&nbsp;&nbsp;meters</td></tr>
+						<tr><td><br>Swimming Time</td><td><br><input type="text" class=dialogtextbox name=swimtme>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=swimtmegoal>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="swmdate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'swim',
+								// inputname
+								'controlname': 'swmdate'
+							});</script>
+							</td>
+						</tr>
+						<tr><td colspan="2">Brief Note: </td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView6" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div4" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Swimming Distance</th><th>Swimming Disatnce Goal</th><th>Swimming Time</th><th>Swimming Time Goal</th></tr>
+						{%for sw in swim%}{%ifequal sw.swimTime None%}{%else%}
+						<tr><td style="text-align: center;">{{sw.collectionDate}}</td><td style="text-align: center;">{{sw.swimDist}}</td><td style="text-align: center;">{{sw.swimDistGoal}}</td><td style="text-align: center;">{{sw.swimTime}}</td><td style="text-align: center;">{{sw.swimTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView6',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+				<div style=";border: 0px solid #a1afbe;margin-top:-15px;margin:25px;">
+					<div><h3><b>Benefits Of Swimming</b></h3></div>
+					<p>Swimming is an activity that suits both young and old. Thousands of adults are taking the plunge in an attempt to stay fit for life. It is a good fitness choice for just about everyone, especially those who have
+		physical limitations or who find other exercises painful. Swimming is also a great way to encourage children to be sporty and fit from a young age.</p> 
+		<p>With concerns about childhood obesity levels rising, swimming is an excellent solution, because it supports the weight of the body while exercising Swimming uses almost all of your major muscle groups. It places a vigorous demand on
+		your heart and lungs. Swimming is also popular with people who are extremely overweight,pregnant, or suffering from some kind of injury.</p>
+		<p>Swimming and other water-related activities are excellent ways to get the physical activity needed for a healthy life, and millions of people enjoy oceans, lakes, rivers, pools, and spas
+		each year. However, it is important to be aware of ways to prevent water-related adverse health events, such as sunburn and other injuries, drowning, and recreational water illnesses (RWIs). Swimming does burn calories at a rate of about 3 calories a mile per pound of bodyweight. If
+		you weigh 150 lbs. and it takes you 30 minutes to swim one mile (1,760 yards or 1,609 meters),then you will be using about 900 calories in one hour. Regular swimming builds endurance, muscle strength and cardio-vascular fitness. It can serve as a cross-training element to your
+		regular workouts.</p>
+		<p>There's no ground impact when you swim, and so you protect the joints from stress and strain. In fact, the Arthritis Foundation strongly recommends swimming and water activities for this
+		reason, so much so that they sponsor water classes all over the country. Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool,
+		you do so with less force because you're buoyant in the water.Not all swimming workouts are the same. How you structure your water routine and the
+		strokes you choose make a difference. Beginners often prefer the backstroke and sidestroke,which are less difficult and don't require breathing out underwater. The trickiest part of
+		learning to swim is mastering the art of breathing.</p>
+		<div style="text-align: center;">
+		<span><img src="/static/images/calories_burned.PNG"></span></div>
+					
+					
+			</div>
+</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if emsg %}alert('{{emsg}}'){%endif%}
+{% if wmsg %}alert('{{wmsg}}'){%endif%}
+{% if smsg %}alert('{{smsg}}'){%endif%}
+{% if cmsg %}alert('{{cmsg}}'){%endif%}
+{% if hsmsg %}alert('{{hsmsg}}'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+{% endblock %}

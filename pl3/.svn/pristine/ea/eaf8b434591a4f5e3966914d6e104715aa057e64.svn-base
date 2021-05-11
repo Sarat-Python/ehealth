@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block mencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Quit Smoking  -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h2 style="text-align: center;"><b>Quit Smoking  </b></h2>
+		<p>Smoking is an important risk factor for the three diseases that cause most deaths in Australia: heart disease, stroke and lung cancer. It is responsible for around 80% of all lung cancer deaths and 20% of all cancer deaths. Smoking has also been linked to cancers of the mouth, bladder, kidney, stomach and cervix, among others. 
+Smokers are also at increased risk of having reduced lung function from chronic obstructive pulmonary disease. Using tobacco has been linked to a variety of other conditions, such as diabetes, peptic ulcers, some vision problems, and back pain. Smoking in pregnancy can lead to miscarriage, stillbirth or premature birth.</p>
+		<h3>Health Risks of Smoking</h3>
+		<p>Smoking is one of the main causes of serious health diseases, such as cancer, stroke and heart problems. If you have no plans of quitting today, having knowledge of the different types of illnesses that you may experience through years of smoking may change your perception and lead you to stop smoking.
+Here are some possible health effects of smoking:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Lung Cancer</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Heart Diseases</p>
+		<div style="float:right;margin-right:35px;"><img src="static/images/smoke.jpg"></div>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;High Blood Pressure</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Bad Breath</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Gum Disease</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Depression</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Snoring</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Diabetes</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Infertility on men and women</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Thyroid Disease</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Harmful effects on Bones and Joints</p>
+		<h2 style="text-align: center;">WHAT  YOU(TH) SHOULD KNOW ABOUT TOBACCO</h2>
+		<h3>Tobacco and Athletic Performance</h3>
+		<p>Nicotine in cigarettes, cigars, and spit tobacco is addictive. Nicotine narrows your blood vessels and puts added strain on your heart. Smoking can wreck lungs and reduce oxygen available for muscles used during sports.  Smokers suffer shortness of breath almost 3 times more often than nonsmokers. Smokers run slower and can't run as far, affecting overall athletic performance.</p>
+		<h3>Tobacco and Personal Appearance</h3>
+		<p>There are two factors that will determine your success in quitting smoking for good. They are;</p>
+		
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Will – You must have the desire to give up your habit of smoking and create a strong will to avoid a smoking relapse.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Mindset – You must learn about the effects of smoking, understand its consequences and face the fact that you need to stop smoking and follow, finish and maintain a quit smoking plan.
+</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Short-term use of spit tobacco can cause cracked lips, white spots, sores, and bleeding in the mouth.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Surgery to remove oral cancers caused by tobacco use can lead to serious changes in the face.</p>
+		<p>Chronic Smoking causes constriction of the tiny blood vessels to the penis, which can result in eventual impotence. </p>
+		<h3>Tips to Quit Smoking</h3>
+		<p>To give an individual a strong reason to quit smoking, there are various dangerous diseases – such as lung cancer, heart disease, strokes, diabetes, etc – caused by smoking cigarettes</p>
+		<p>It is one of the most important steps in the process, an individual need to have strong will to achieve this objective.   If you’re thinking about quitting or have stopped smoking but failed to quit, don’t lose hope because smokers often try to quit more than once before they actually succeed.</p>
+		<h3>Preparing to Quit</h3>
+		<p>Quitting works best when you're prepared. Before you quit, START by taking these five important steps:</p>
+						
+				<p>S = Set a quit date.</p>
+				<p>T = Tell family, friends, and coworkers that you plan to quit.</p>
+				<p>A = Anticipate and plan for the challenges you'll face while quitting.</p>
+				<p>R = Remove cigarettes and other tobacco products from your home, car, and work.</p>
+				<p>T = Talk to your doctor about getting help to quit.</p>
+		<h3>Find alternatives other than Smoking: </h3>				
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Go to a movie</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Exercise</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Take long walks</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Go bike riding</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use flying-insect spray indoors around sleeping areas.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Spend as much free time as you can where smoking isn't allowed. Some good places are malls, libraries, museums, theaters, department stores, and places of worship</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Drink a lot of water and fruit juice. Avoid drinks like wine and beer. They can trigger you to smoke.</p>
+		<h3>Stay Away from What Tempts You</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Instead of smoking after meals, get up from the table. Brush your teeth or go for a walk.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you always smoke while driving, try something new: Listen to a new radio station or your favorite music. Take a different route. Or take the train or bus for a while, if you can.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Stay away from things that you connect with smoking. Do it today and for the next few weeks. These may include:</p>
+							<p>Watching your favorite TV show</p>
+							<p>Sitting in your favorite chair</p>
+							<p>Having a drink before dinner</p>
+		
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Do things and go places where smoking is not allowed. Keep this up until you're sure that you can stay smoke free.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Remember, most people don't smoke. Try to be near nonsmokers if you must be somewhere you'll be tempted to smoke, for example at a party or in a bar.</p>
+				</div>
+	</div>	
+{% endblock%}

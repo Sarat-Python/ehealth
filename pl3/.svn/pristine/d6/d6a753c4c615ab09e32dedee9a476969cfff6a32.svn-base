@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block mencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Heart Disease Prevention</b></h2>
+		<p>You can help prevent heart disease by making healthy choices and managing any medical conditions you may have.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><h3>Prevention: What You Can Do</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Eat a healthy diet</strong> Choosing healthful meal and snack options can help you avoid heart disease and its complications. Be sure to eat plenty of fresh fruits and vegetables.
+Eating foods low in saturated fat and cholesterol and high in fiber can help prevent high blood cholesterol. Limiting salt or sodium in your diet can also lower your blood pressure.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Maintain a healthy weight</strong> Being overweight or obese can increase your risk for heart disease. To determine whether your weight is in a healthy range, doctors often calculate a number called the body mass index (BMI). Doctors sometimes also use waist and hip measurements to measure a person's excess body fat.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Exercise regularly:</strong> Physical activity can help you maintain a healthy weight and lower cholesterol and blood pressure. The Surgeon General recommends that adults should engage in moderate-intensity exercise for at least 30 minutes on most days of the week.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Don't smoke:</strong>Cigarette smoking greatly increases your risk for heart disease. So, if you don't smoke, don't start. If you do smoke, quitting will lower your risk for heart disease. Your doctor can suggest ways to help you quit.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Limit alcohol use:</strong> Avoid drinking alcohol, which causes high blood pressure</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Obesity is excess body fat.</p>
+		</div>
+		<div><p><strong>If you have high cholesterol, high blood pressure, or diabetes, there are steps you can take to lower your risk for heart disease.</strong></p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Have your cholesterol checked:</strong> Your health care provider should test your cholesterol levels at least once every five years. Talk with your doctor about this simple blood test.</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Monitor your blood pressure:</strong> High blood pressure has no symptoms, so be sure to have it checked on a regular basis.</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Manage your diabetes:</strong>If you have diabetes, closely monitor your blood sugar levels. Talk with your health care provider about treatment options.</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;<strong>Take your medicine:</strong>If you're taking medication to treat high cholesterol, high blood pressure, or diabetes, follow your doctor's instructions carefully. Always ask questions if you don't understand something.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+		</div></div></div>
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

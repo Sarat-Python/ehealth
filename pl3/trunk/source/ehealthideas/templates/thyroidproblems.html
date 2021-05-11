@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block discolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Thyroid Problems</b></h2>
+		<p>Through the hormones it produces, the thyroid gland influences almost all of the metabolic processes in your body. Thyroid disorders can range from a small, harmless goiter (enlarged gland) that needs no treatment to life-threatening cancer.</p>
+		<p>The most common thyroid problems involve abnormal production of thyroid hormones. Too much thyroid hormone results in a condition known as hyperthyroidism. Insufficient hormone production leads to hypothyroidism.</p>
+		<p>Although the effects can be unpleasant or uncomfortable, most thyroid problems can be managed well if properly diagnosed and treated.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><span style="width:300px;float:right;margin-top:0px;margin-left:50px;border:0px solid;"><img src="/static/images/thyroid.jpg" height="260px" ></span>
+		<div><h3>Hyperthyroidism</h3>
+		<h3>What causes hyperthyroidism?</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Graves' disease causes most hyperthyroidism. In Graves’ disease, the body's natural defense (immune) system attacks the thyroid gland. The thyroid fights back by making too much thyroid hormone. Like many thyroid problems, it often runs in families.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Sometimes hyperthyroidism is caused by a swollen thyroid or small growths in the thyroid called thyroid nodules.</p>
+		<p>This topic focuses on hyperthyroidism caused by Graves' disease.</p>
+		</div>
+		<div><h3>What are the symptoms?</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;You may feel nervous, moody, weak, or tired.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Your hands may shake, your heart may beat fast, or you may have problems breathing.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;You may be sweaty or have warm, red, itchy skin.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;You may have more bowel movements than usual.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;You may have fine, soft hair that is falling out.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;You may lose weight even though you eat the same or more than usual.</p>
+		
+		</div>
+		<div><h3>How is it treated?</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your symptoms bother you, your doctor may give you pills called beta-blockers. These can help you feel better while you and your doctor decide what your treatment should be. Hyperthyroidism can lead to more serious problems. So even if your symptoms do not bother you, you still need treatment.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Radioactive iodine and ant thyroid medicine are the treatments doctors use most often. The best treatment for you will depend on a number of things, including your age. Some people need more than one kind of treatment.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Radioactive iodine is the most common treatment. Most people are cured after taking one dose. It destroys part of your thyroid gland, but it does not harm any other parts of your body.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Ant thyroid medicine works best if your symptoms are mild. These pills do not damage your thyroid gland. But they do not always work, and you have to take them at the same time every day. If they stop working, you may need to try radioactive iodine.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+	</div>
+		</div></div></div>
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

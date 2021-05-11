@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% block fitnesscolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart1);
+
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Calories Consumed');
+    data.addColumn('number', 'Calories burnt');
+    data.addRows({{calorie.count}});
+    {%for ca in calorie%}{%ifequal ca.collectionDate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ca.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ca.calburnt}});
+    data.setValue({{forloop.counter0}}, 2, {{ca.calconsumed}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Calorie Chart',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Calories Burnt', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+</script>
+
+<div class="content" style="height:850px;" >
+<div style="margin: 15px 0px;text-align: center;"><h2><b>Calorie Tracker</b></h2>
+
+<!-- Tables &graph -->
+		<div id="dhtmlgoodies_tabView3" style="margin-right:15px; margin-top:15px;" >
+					<span style="margin-left: 200px;">Track record</span>
+						<div class="dhtmlgoodies_aTab">
+							<div style="margin-top: 5px;">
+						 		<div id="chart_div1"></div>
+							</div>
+						</div>
+						<div class="dhtmlgoodies_aTab" >	
+							<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+							<table class="sample" style="margin: auto;">
+							<tr><th>Date</th><th>Calorie Consumed</th><th>Calorie Burnt</th></tr>
+							{%for ca in calorie%}{%ifequal ca.collectionDate None%}{%else%}
+							<tr><td style="text-align: center;">{{ca.collectionDate}}</td><td style="text-align: center;">{{ca.calconsumed}}</td><td style="text-align: center;">{{ca.calburnt}}</td></tr>
+							{%endifequal%}
+							{%endfor%}
+							</table>
+							</div>
+						</div>
+				</div>
+				<script type="text/javascript">
+				initTabs('dhtmlgoodies_tabView3',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+				</script>		
+<!-- End of Tables &graph -->
+{%if session.username %}
+<form  name="calorie" id="cal" action="/calories" method="post">
+<table>
+<tr>	<td style="margin-right: 0px;"><br><br><br><br>Date:</td><td><br><br><br><br>
+								<input type="text" style="margin-left: -70px;" name=caldate />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'calorie',
+									// inputname
+									'controlname': 'caldate'
+									});</script></td>
+									</tr>
+<tr>
+	<td style="width:350px;"><br>	Select a Food Item Consumed:<select name="calory" onchange="show_value(this.value);">
+
+			<!--  onchange="show_value(this.value);">    <option value="{% for ca in calorie %}{{ca.calory}}{%endfor%}" selected>{% for ca in calorie %}{{ca.calory}}{%endfor%} </option>  -->	 
+		<option value="Idly" onchange="shovalue(this.value);">Idly</option>
+		<option value="Upma">Upma</option>
+		<option value="Puri" >Puri</option>
+		<option value="Dosa">Dosa</option>
+		
+		</select>
+
+ 
+<br>
+	<td style="background-color: #75f4f4;" >	<br>
+	Select a Physical Activity:<select name="activity" onchange="showvalue(this.value);">
+	
+		<option value="Run">Running</option>
+		<option value="Walk" >Walking</option>
+		<option value="Swim" >Swimming</option>
+		<option value="Hike" >Hiking</option>
+		</select>
+		
+		</td>
+		
+		</tr>		
+		
+<tr>
+	<td><span id="textidval" style="width:35px;"></span>&nbsp;&nbsp;&nbsp;
+	<span ><input type="text" value="" placeholder="Item/cups" style="width:55px;" name=cup ></span>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="textidval"><input type="text" id=calories style="width:55px;" name=calories></span>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;<span id="dynamicInput"><input type="text" value="" id=res style="width:55px;" ></span><br>
+
+	
+		<INPUT TYPE="button" VALUE="Show result" onClick="doM()">
+		<br>Total Consumed=<input type="text" value="" id=reso name='con'>
+</td>
+
+	<td style="padding:10px;background-color: #75f4f4;"><span id="textidvals" style="width:35px;">	
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id=cal value="" style="width:55px;" placeholder="Timespent" name=run>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" value=""style="width:55px;" name=runcnst>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;
+		<span id="dynamic"><input type="text" id=result style="width:55px;" name='rest'><br></span></span>
+		<INPUT TYPE="button" VALUE="Show result" onClick="doMath()">
+		Total Burnt=<input type="text" value=""  id=re name='rest'>
+		
+</td>
+<tr><td width="50">Weight:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="wt" size="4"><select name="wu" size="1" onchange="poundsAndKilos(this.form)"><option selected="">pounds</option><option>kilograms</option></select>
+								<em><font size="1">can convert lbs to kg</font></em></td>
+								
+								<td><input type="button" value="check" onclick="return check(this);"></td>
+								
+								</tr>
+						  
+<tr><td><td>
+
+<input type="button"  onClick="addInput('dynamic');" value="Add"></td></tr>
+	</tr>
+<tr><td><input type="button"  onClick="addInput('dynamicInput');" value="Add" style="margin-left: 200px;"> <input type="submit" value="Save"></td></tr>
+
+		</table>
+</form>	
+{%endif%}
+{%if not session.username %}
+<table>
+<tr><th>Amount of Calories Consumed</th><th>Amount of Calories Burnt</th>
+<tr><td>Name of Food Consumed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></td>
+<td>Name of Physical Activity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></td>
+</tr>
+<tr><td>Calories Consumed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:55px;"></td>
+<td>Calories Burnt:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:55px;"></td>
+</tr>
+<tr><td><br><input type="submit" value="Save"></td><td><br><input type="submit" value="Save"></td></tr>
+
+
+</table>
+{%endif%}	
+		</div>
+	</div>
+		<script type="text/javascript">
+function show_value(val) {
+    document.getElementById('textidval').textContent=val;
+    if(val=="Idly"){
+    document.getElementById('calories').value="24";}
+    if(val=="Upma"){
+        document.getElementById('calories').value="25";}
+    if(val=="Puri"){
+        document.getElementById('calories').value="26";}
+    if(val=="Dosa"){
+        document.getElementById('calories').value="27";}
+ }
+function showvalue(val)
+{
+    document.getElementById('textidvals').textContent=val;
+    if(val=="Run"){
+        document.getElementById('cal').value="4";}
+        if(val=="Walk"){
+            document.getElementById('cal').value="5";}
+        if(val=="Swim"){
+            document.getElementById('cal').value="6";}
+        if(val=="Hike"){
+            document.getElementById('cal').value="7";}
+  
+    }
+var counter = 1;
+limit = 10;
+function addInput(divName){
+		// alert("You have reached the limit of adding ");
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          calorieid="calories".counter;
+          newdiv.innerHTML =  "<select name='myInputs[]'><option>Idly</option><option>Upma</option><option>Puri</option></select>"+"<input type='text' name='myInputs[]' size=5>"+" * <input type='text' id="+calorieid+" name=qty size=5>"+" = <input type='text' name='myInputs[]' size=5>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+
+<!-- Begin
+function  doMath() {
+	var one = eval(document.calorie.run.value);
+	var two = eval(document.calorie.runcnst.value);
+	var prod = one  *   two;
+	document.getElementById('result').value=prod;
+	document.getElementById('re').value=prod;
+		}
+function  doM() {
+	var one = eval(document.calorie.calories.value);
+	var two = eval(document.calorie.cup.value);
+	var prod = one  *   two;	
+	document.getElementById('res').value=prod;
+	document.getElementById('reso').value=prod;
+	document.getElementById('sec').value=prod;}
+	// End -->
+
+ 
+
+function check(calorie) 
+{
+	if (document.calorie.con > document.calorie.rest)
+		 { 
+			alert('your intake is more than what you burn.Work more to be fit.') 
+			}
+	else
+	  {
+		alert('Good.calories burnt.')
+	  }
+	
+
+	}
+	
+	
+</script>
+	{% endblock %}

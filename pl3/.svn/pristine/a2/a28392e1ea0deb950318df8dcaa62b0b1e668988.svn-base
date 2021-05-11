@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Lip Care -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h3 style="text-align: center;"><b>Lip Care Tips</b></h3>
+		<p>Lip care is an integral part of beauty regimen. It is so because the lip skin is very sensitive and tender. Consequently age easily leaves its mark. Proper lip care routine results in soft, supple and full lips.</p>
+		<h3>Lip Gloss</h3>
+		<p>For those who want a simpler appearance, glosses instead of lipsticks are a great alternative. They add luster, and are perfect for casual and semi-formal settings. Since a gloss makes look fuller, women with thicker ones should generally avoid using too much.</p>
+		<p>A good gloss applied on top of your balm will give them a shimmering appearance, and highlight your face even if you have no makeup on. Give it a shot!</p>
+		<h3>Lipsticks</h3>
+		<p>Most of us go wrong when choosing a suitable lipstick color. Choosing the right shade is very critical. Indians with fair skin generally have more options. They can choose from brighter colors like pinks and peaches.
+Those of us with darker skin look nicer in shades of coffee, or caramel. A good tone for your skin is one that is just a tad deeper than your natural lip color. It is a good idea to experiment with shades at a beauty salon or a cosmetics store before you buy these often expensive cosmetic products.</p>
+	    <p>You can apply a shade on your lower lip to see if it is a little deeper than the natural color on your upper lip. If yes, you have found the perfect shade to get those perfect kissable and appealing lips.
+The best way to apply it is after moisturizing them with a good balm. If you want to opt for a fuller look, a pencil can be used to outline. This should generally be a shade lighter than your lipstick. After you apply it, add some gloss over it if you like the shimmering appearance.
+	    </p> 
+	    <h3>Now let us have a look at these lip care steps.</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The most important point is to remember is that dry skin causing wrinkles- more so in case of delicate lip skin. So keep your skin hydrated and supple by drinking sufficient amount of water. Excessive intake of coffee and tea has dehydrated effect. So cut down on those. You can consider taking vitamin E supplement to keep your skin soft and supple.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Healthy and ample blood flow to the lip tissue gives you healthy pink lips. You can consider taking iron supplements to add a healthy pink glow to your face and lips.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Exfoliating the lips regularly removes dead skin and helps generate new soft skin. You can use any lip scrub available in the shops or homemade lip scrubs. One easy method of exfoliating the lips is to apply your favorite
+lip balm generously. Take any old tooth brush, wet it and thin dip it into pinch of sugar. Scrub your lips with a light hand with this brush .Wash off and again apply lip balm.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you are the kind of person who spend a lot of time exposed to UV ray of the sun remembers to use a lip balm with SPF.</p>
+        <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Topical application of vitamin E oil not only keeps your lips soft, it helps in reducing lip lines. Same goes for almond oil.</p>
+        <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Apply honey to your lips for a few minutes and wash off to get soft lips. Honey is a natural moisturizer.</p>
+        <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use lemon ridges to scrub your lips to remove any darkness from lip skin. Lemon is a natural skin lightener.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>        
+        	</div>	
+</div>		
+{% endblock%}

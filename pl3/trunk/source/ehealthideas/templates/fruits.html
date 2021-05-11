@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+{% block foodcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+  
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sugar.count}});
+    {%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sleep.count}});
+    {%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{heart.count}});
+    {%for hr in heart%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+<div class="content">
+<div style="margin: 25px;text-align: center;"><h3><b>Importance Of Fruits and Vegetables</b></h3>
+		<p>Fruits and vegetables can protect your health. Most fruits and vegetables are naturally low in fat and calories and are filling. They contain essential vitamins, minerals, and fiber that may help protect you from chronic diseases. Compared with people who consume a diet with only small amounts of fruits and vegetables, those who eat more generous amounts as part of a healthful diet are likely to have reduced risk of chronic diseases, including stroke and perhaps other cardiovascular diseases, and certain cancers. To get the amount that's recommended, most people need to increase the amount of fruits and vegetables they currently eat every day.</p> 
+		<p>Fruits and vegetables can be used to help manage your weight. They can be part of a well-balanced and healthy eating plan. There are many different ways to lose or maintain a healthy weight. Using more fruits and vegetables along with whole grains and lean meats, nuts, and beans is a safe and healthy one. Helping control your weight is not the only benefit of eating more fruits and vegetables. Diets rich in fruits and vegetables may reduce the risk of some types of cancer and other chronic diseases. Fruits and vegetables also provide essential vitamins and minerals, fiber, and other substances that are important for good health.</p>
+		<p>To lose weight, you must eat fewer calories than your body uses. This doesn't necessarily mean that you have to eat less food. You can create lower-calorie versions of some of your favorite dishes by substituting low-calorie fruits and vegetables in place of higher-calorie ingredients. The water and fiber in fruits and vegetables will add volume to your dishes, so you can eat the same amount of food with fewer calories. Most fruits and vegetables are naturally low in fat and calories and are filling. Though they are lower in calories than many other foods, they do contain some calories. Eating fruits and vegetables in addition to what you usually eat will add calories and may cause a gain in weight. The key is substitution. Eating fruits and vegetables instead of some other higher-calorie foods helps in reducing weight.</p>
+		</div>
+		<div class="subheadng" style="margin: 25px;">Helpful tips for making fruits and vegetables part of your weight management plan:</div>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The best way to eating fruits and vegetables is the way nature provided—or with fat-free or low-fat cooking techniques. Try steaming your vegetables, using low-calorie or low-fat dressings, and using herbs and spices to add flavor. Some cooking techniques, such as breading and frying, or using high-fat dressings or sauces will greatly increase the calories and fat in the dish. And eat your fruit raw to enjoy its natural sweetness.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Canned or frozen fruits and vegetables are good options when fresh produce is not available. However, be careful to choose those without added sugar, syrup, cream sauces, or other ingredients that will add calories.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Choose whole fruit over fruit drinks and juices. Fruit juices have lost fiber from the fruit. It is better to eat the whole fruit because it contains the added fiber that helps you feel full. One 6-ounce serving of orange juice has 85 calories, compared to just 65 calories in a medium orange.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Whole fruit gives you a bigger size snack than the same fruit dried—for the same number of calories. A small box of raisins (1/4 cup) is about 100 calories. For the same number of calories, you can eat 1 cup of grapes.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+		
+	</div>
+{% endblock %}

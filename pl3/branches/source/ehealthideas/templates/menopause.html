@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="dhtmlgoodies_aTab" >
+		<div style="margin: 25px;text-align: center;"><h2><b>MENOPAUSE</b></h2>
+		<p>Some women go through menopause with few or no noticeable symptoms, whilst other women experience short-term or acute symptoms such as hot flashes, night sweats, mood swings, fatigue, dizziness, headaches, anxiety, depression, poor libido, bladder problems, vaginal dryness and itching, burning and discomfort during sexual intercourse, breast tenderness, dryness and ageing of the skin, shortness of breath, heart palpitations, poor memory and insomnia. All these symptoms are due to oestrogen and progesterone deficiency. Osteoporosis is a major problem for women after menopause.  </p>
+		<p>Menopause is not a disease.  It is the next natural phase of life, and with proper diet, nutritional supplements, and exercise, most of the unpleasant side effects of menopause can be minimized, and often eliminated</p>
+</div>
+
+		<div style="margin:25px;"><h3>Nutrition Facts & Diet advice for Menopause Problems:</h3>
+		<div style="border:0px solid;"><span style="width:300px;float:right;margin-top:0px;margin-left:50px;border:0px solid;"><img src="/static/images/menopause.jpg" height="180px" width="280px"></span>
+		<h3>Consider the following nutrition guidelines:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat a diet high in raw and lightly steamed vegetables, particularly green leafy varieties.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat oily fish, and if you use tin fish eat the bones also.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat phytoestrogens as found in miso, soybeans and tofu.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid dairy and excessive meat, which can cause hot flashes and excrete calcium.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid alcohol, caffeine and sugar, which can cause hot flashes and mood swings.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid stress when possible.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Substitute garlic or onion powder for salt in cooking, as salt increases urinary excretion of calcium.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you have a tendency for hypoglycaemia (low blood sugar), always mix some protein with your carbohydrate intake.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Drink at least 2 litres of filtered or bottled water per day to help prevent drying of skin and mucous membranes.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid spicy foods.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Get regular exercise.</p>
+		</div>				
+		
+	</div>	</div>	
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}
+		

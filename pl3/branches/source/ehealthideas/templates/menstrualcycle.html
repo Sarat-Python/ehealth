@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>MENSTRUAL CYCLE</b></h2>
+		<p>Mostly it ranges anywhere from 21 to 35 days. Every woman usually has a certain cycle length that is rather constant but sometimes varies 1-2 days per month. Remember that the onset of menses for every 35 days (regularly) is not considered as irregular menstrual cycle. However, irregular periods can be either of short term or long-term irregularity.</p>
+		<p>Long-term irregularity can be anything from a cycle that changes in length from month to month to the experience of various abnormal symptoms such as heavy bleeding, no cycle for months for a period of time, very painful periods or ovulation.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><span style="width:300px;float:right;margin-top:0px;margin-left:50px;border:0px solid;"><img src="/static/images/menstrualcycle.jpg" height="260px"></span>
+		<div><h3>Causes of Irregular Menstrual Cycle</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The cause of irregular menstrual cycle is mostly related to stresses, tension, ingested medications and caffeine, a substance that disrupts corpus luteum function or even act as anticoagulant blood thinners.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Remember that fluctuation in periods indicates the beginning of disturbance in the natural chain of hormonal events that manage menstruation.</p>
+		</div>
+		<div><h3>The other common responsible factors for irregular menstrual cycle are:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;significant weight gain or loss, over-exercise, breastfeeding, polycystic ovarian syndrome/estrogen dominance, poor nutrition, medications, chemotherapy eating disorders, hormonal imbalance, recent childbirth, miscarriage or uterine abnormalities (fibroids/cysts/polyps/endometriosis).</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The occasional skipped menses cycle is not the only symptom of this problem. However, continued abnormality in period is also an indication of irregular ovulation and irregular menstruation cycle. If you notice this problem, then right away consult your gynecologist for appropriate treatment.</p>
+		</div>
+	</div>
+		<div><h3>How long does a woman have periods?</h3>
+		<p>Women usually have periods until menopause. Menopause occurs between the ages of 45 and 55, usually around age 50.Menopause means that a woman is no longer ovulating (producing eggs) or having periods and can no longer get pregnant.</p>
+		<p>Like menstruation, menopause can vary from woman to woman and these changes may occur over several years.The time when your body begins its move into menopause is called the menopausal transition. This can last anywhere from 2 to 8 years.</p>
+		<p>Some women have early menopause because of surgery or other treatment, illness, or other reasons. If you don’t have a period for 90 days, you should see your doctor. He or she will check for pregnancy, early menopause, or other health problems that can cause periods to stop or become irregular.</p>
+		</div>	</div></div>
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

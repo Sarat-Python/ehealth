@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block mencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>Nutrition For Men</b></h2>
+		<p>Male health is one of the most important issues of men regarding the problems like impotence, low sperm count, low libido, prostrate problem, premature ejaculation, erectile dysfunction, over masturbation.</p>
+		<p>Males of all ages can benefit from eating a balanced and varied diet, getting enough calcium, avoiding high fat and sugar content (like fast food), drinking six 8-ounce glasses of water, and exercising daily.</p>
+		<p>Although everyone is encouraged to eat five or more servings of fruits and vegetables a day, men should actually be shooting for nine; unfortunately, most men are in danger of not eating enough of this important food group.</p>
+		</div>
+		<div style="margin:25px;">
+		<div><h3>Men have high rates of diet-related diseases:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Men have approximately 1 1/2 times the death rate of total cardiovascular diseases as women.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Men have approximately 1 1/2 times the death rate of total cancers as women.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Men have approximately 2 times the death rate of lung cancer as women.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Men have approximately 1 1/2 times the death rate of colorectal cancer as women.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;More than two-thirds of men are overweight or obese.</p>
+		</div>
+		<div><h3> Importance of Fruits and Vegetables: </h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Fruits and vegetables provide vitamins, minerals and fiber your body needs.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;They are packed with hundreds of disease-fighting phytochemicals - natural substances that work as a team to protect good health. </p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Pills and supplements cannot provide all these nutrients together.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Different color fruits and vegetables all contain an array of disease-fighting phytochemicals that work together with vitamins and minerals to protect our health. Eat a variety of colorful fruits and vegetables every day.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Green (i.e. spinach, romaine lettuce, peas, broccoli, limes)</p>
+		<div style="float:right;margin-right:35px;"><img src="static/images/food.jpg"></div>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Yellow/Orange (i.e. carrots, squash, sweet corn, oranges)</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Red (i.e. tomato sauce, tomatoes, red peppers, cherries, watermelon)</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Blue/Purple (i.e. blueberries, eggplant, grapes, plums)</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;White (i.e. cauliflower, mushrooms, onions, bananas, pears)</p>
+		</div>
+		<div><h3>Healthy diets should follow:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;6-11 servings of complex carbohydrates.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;2-3 servings each of fruits and vegetables.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;1-2 servings each of dairy products.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Proteins like meat, tofu, or beans.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Sparing use of added fats and sugars.</p>
+	</div>
+	<div>
+	<p>Older men may need to increase vitamin D intake, especially if you do not get sufficient skin exposure to sunlight. Vitamin D is a fat soluble nutrient required to enhance the absorption of calcium. Increasing your vitamin D intake can help you maintain strong bones and prevent tooth loss, osteoporosis and fractures from falling. </p>
+	<p>Older men need to increase fiber intake to 30 g daily to improve levels of cholesterol and blood sugar and maintain gastrointestinal health. Fiber is an indigestible substance in fruits, vegetables, legumes and whole grains. Soluble fiber can help you reduce the amount of cholesterol you absorb from foods and slow down the absorption of sugar to maintain healthy blood sugar levels. Insoluble fiber helps you maintain regular bowel movements.</p>
+	<p>To maintain healthy weight, men older than 50 should adjust caloric intake and exercise habits. It is a general recommendation that one has to aim for 2,000 calories daily if they are sedentary; 2,200 to 2,400 for moderately active; and 2,400 to 2,800 for highly active. One needs to get at least 30 minutes of exercise most days to maintain muscle tone, strength and energy.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>
+	</div>
+		</div></div>
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

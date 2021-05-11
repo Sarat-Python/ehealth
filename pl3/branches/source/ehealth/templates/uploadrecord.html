@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{%block colorselfhelp%}style="background:#416be0;"{%endblock%}
+{% block content %}
+<div class=search><div style="padding-top:10px;padding-bottom:10px;;width:700px;;margin: auto;">
+		<span style="float: left;margin-left: 25px;">
+		Search:&nbsp;&nbsp;
+		<select class=selectbox>
+		<option value="doctor">Doctors</option>
+		<option value="hospital">Hospital</option>
+		<option value="blood group">Blood Group</option>
+		</select>
+		</span>
+		<select class=selectbox style="margin-left:20px; ">
+		<option value="choose">Choose Location</option>
+		<option value="visakhapatnam">visakhapatnam</option>
+		<option value="hyderabad">hyderabad</option>
+		<option value="vijayawada">vijayawada</option>
+		</select><br/><br/>
+		<div style="margin-left:90px;">
+		<input type="text" style="border-radius:8px 8px 8px 8px;margin-top: -5px;" size="40" placeholder="Name/Location">
+		<a href="#"><input type="button" value="Search"></a>
+		</div></div>
+</div><br/>
+<div style="padding-top:10px;padding-bottom:10px;width:700px;;margin: auto;">
+<form action="{{upload_url}}" method="POST" enctype="multipart/form-data">
+Upload Record: <input type="file" name="file"><input type="submit" name="submit" value="Submit"> </form><br/>
+Your Health Records:
+</div>
+{% if blob %}
+<table class=text style="text-align:center;border: 1px #e4e4e4 solid;width:500px;margin: auto;">
+<tr><th>File Name</th><th>Date of Upload</th></tr>
+{% for b in blob%}
+<tr><td><a href="/serve?key={{b.key}}">{{b.filename}}</a></td><td>({{b.creation|truncatewords:1}})</td><td><a href="/delete?key={{b.key}}">delete</a></tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

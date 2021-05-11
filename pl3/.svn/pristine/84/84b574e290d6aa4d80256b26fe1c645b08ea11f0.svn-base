@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart6);
+
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sleep.count}});
+    {%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  </script>
+<div id="dhtmlgoodies_tabView1">
+	<div class="content">
+	  <div style="text-align: center;margin-top: 15px;"><span style="color:#436de1;font-size: 18px;"><h3>Hours Slept</h3></span></div>
+		<div style="height: 350px;">
+			<div style="float: left;width:480px;border: 0px solid #a1afbe;height: 300px;margin-top: 20px;" >
+					<form  name="sleep" id="sleep" action="/sleep" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Sleep time</td><td><br><input type="text" class=dialogtextbox name=slptme>&nbsp;&nbsp;hours</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=sltmegoal>&nbsp;&nbsp;hours</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="sldate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'sleep',
+								// inputname
+								'controlname': 'sldate'
+							});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note: </td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+			</div>
+			<div id="dhtmlgoodies_tabView9" style="float: right;margin-right:15px;" >
+				<span style="margin-left: 200px;"><b>Track record</b></span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_sleep" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Sleeping Time</th><th>Sleeping Time Goal</th></tr>
+						{%for sl in sleep%}{%ifequal sl.sleepTime None%}{%else%}
+						<tr><td style="text-align: center;">{{sl.collectionDate}}</td><td style="text-align: center;">{{sl.sleepTime}}</td><td style="text-align: center;">{{sl.sleepTimeGoal}} hrs</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView9',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 0px solid #a1afbe;margin-top:-15px;">
+			<div style="text-align: center;"><b>Health Ideas</b></div>
+			<div style="margin: 25px;"><span><h3><b>How Much Sleep Do I Need?</b></h3></span>
+			<p>Sleep guidelines from the National Sleep Foundation below have noted that the need for sleep changes as we age:</p>
+			<p style="text-align: center;"><img src="/static/images/Capture.PNG"></p>
+			</div>
+			<div style="margin: 25px;"><span><h3><b>Sleep Hygiene Tips:</b></h3></span>
+			<p>The promotion of regular sleep is known as sleep hygiene. The following is a list of sleep hygiene tips which can be used to improve sleep.</p>
+			<p>National Sleep Foundation recommendations:</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Go to bed at the same time each night and rise at the same time each morning.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Make sure your bedroom is a quiet, dark, and relaxing environment, which is neither too hot nor too cold.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Make sure your bed is comfortable and use it only for sleeping and not for other activities, such as reading, watching TV, or listening to music. Remove all TVs, computers etc. from the bedroom.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Physical activity may help promote sleep, but not within a few hours of bedtime.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Avoid large meals before bedtime.</p> 
+			</div>
+			<div style="margin: 25px;"><span><h3><b>Poor Sleep May Raise Blood Pressure:</b></h3></span>
+				<p>Study Shows Men Who Don't Get Enough Deep Sleep May Have Higher Blood Pressure</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Not getting enough deep sleep may raise your blood pressure</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;A new study shows men who got the least deep sleep were 80% more likely to develop high blood pressure than those who got the most.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Researchers determined how much deep sleep the men got by measuring the speed of their brain waves. People with poor-quality sleep spend a lot of time in "slow wave" sleep.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;It's the first study to show that poor sleep quality independently raises the risk of high blood pressure; regardless of sleep duration or other sleep issues.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Researchers say the results suggest the sleep quality is the third pillar of overall health. "People should recognize that sleep, diet and physical activity are critical to health, including heart health and optimal blood pressure control," says researcher Susan Redline, MD, in a news release.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Redline is a professor of sleep medicine at the Harvard School of Medicine. She says poor sleep may be a predictor of poor health.</p>
+				<div><embed style="width: 450px;height: 250px;float: right;padding-left:10px;" src="http://www.youtube.com/v/lsDbEdMG8-Q"></div>
+				<p><h3>Tips for a Good Night's Sleep:</h3></p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Ban Blue Light in the Bedroom</p>
+				<p>Turn off TVs, computers, and other blue light producers an hour before sleep. Cover any blue displays you can't shut off.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid Naps</p>
+				<p>When an afternoon slump hits, go for a short walk, drink a glass of ice water, or call a friend.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Set Your Body Clock</p>
+				<p>Go to sleep and wake up at about the same time every day -- including weekends. This routine will put your brain and body on a healthy sleep-wake cycle. In time, you'll be able to fall asleep quickly and sleep soundly through the night.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Cut the Caffeine</p>
+				<p> Coffee in the morning is fine for most people, but as soon as the clock strikes noon, avoid caffeine in foods and drinks. Caffeine interferes with the deeper stages of sleep, so even small amounts found in chocolate and decaffeinated coffee may impact your rest.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Exercise Right, Time It Right</p>
+				<p>Regular exercise has been shown to improve sleep quality.</p>
+				<p>Gentle mind/body exercises are fine just before sleep. Yoga, tai chi, and similar routines are a perfect, sleep-inducing nightcap.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat Right at Night</p>
+				<p>Avoid heavy foods and big meals late in the day</p>
+				<p>Finish any snack at least an hour before bed.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>				
+			</div>
+		</div>
+	</div>
+	</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+{%endblock%}

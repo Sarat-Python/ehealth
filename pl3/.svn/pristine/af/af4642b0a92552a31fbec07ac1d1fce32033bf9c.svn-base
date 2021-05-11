@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block discolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Malaria -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h2 style="text-align: center;"><b>Malaria </b></h2>
+		<p>Malaria is a mosquito-borne disease caused by a parasite. People with malaria often experience fever, chills, and flu-like illness. Left untreated, they may develop severe complications and die. In 2008, an estimated 190 - 311 million cases of malaria occurred worldwide and 708,000 - 1,003,000 people died, most of them young children. </p>
+		<h3>Common symptoms of malaria</h3>
+		<p>In the early stages, malaria symptoms are sometimes similar to those of many other infections caused by bacteria, viruses, or parasites. Symptoms may include:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Fever</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Chills</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Headache</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Sweats</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Fatigue</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Nausea and vomiting</p>
+		<p>Symptoms may appear in cycles and may come and go at different intensities and for different lengths of time. But, especially at the beginning of the illness, the symptoms may not follow this typical pattern.</p>
+		<p>The cyclic pattern of malaria symptoms is due to the life cycle of malaria parasites  as they develop, reproduce, and are released from the red blood cells and livercells in the human body. This cycle of symptoms is also one of the major indicators that you are infected with malaria.</p>
+		<h3>Other common symptoms of malaria</h3>
+		<p>Other common symptoms of malaria include:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Dry (nonproductive) cough</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Muscle and/or back pain</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Enlarged spleen</p>
+		<h3>Treatment for Dengue Fever</h3>
+		<p>In rare cases, malaria can lead to impaired function of the brain or spinal cord, seizures, or loss of consciousness.</p>
+		<p>Infection with the P. falciparum parasite is usually more serious and may become life-threatening.</p>
+		<p>There are other conditions with symptoms similar to a malarial infection. It is important that you see your doctor to discover the cause of your symptoms.</p>
+		<p>Prevention</p>
+		<p>Prevention of malaria involves protecting yourself against mosquito bites and taking anti malarial medicines. But public health officials strongly recommend that young children and pregnant women avoid traveling to areas where malaria is common.</p>
+		<p>Prevent mosquito bites</p>
+		<p>To prevent mosquito bites, follow these guidelines:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Limit your outdoor activity between dusk and dawn. Stay in screened or air-conditioned rooms.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Wear protective clothing (long pants and long-sleeved shirts).</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use insect repellent with DEET (N,N diethylmetatoluamide). The repellent is available in varying strengths up to 100%. In young children, use a preparation containing less than 24% strength, because too much of the chemical can be absorbed through the skin.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use bed nets (mosquito netting) sprayed with or soaked in an insecticide such as permethrin or deltamethrin.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use flying-insect spray indoors around sleeping areas.</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid areas where malaria and mosquitoes are present if you are at higher risk (for example, if you are pregnant, very young, or very old).</p>
+		<p>If you use a bed net treated with insecticide and use insect repellents on your clothes, you will reduce your risk of becoming infected with malaria. Other steps that may be helpful in reducing the risk of malaria include using air conditioning and electric fans, wearing protective clothing, using aerosol insecticides in your house, and taking certain anti malarial medicines. </p>
+				</div>
+	</div>	
+{% endblock%}

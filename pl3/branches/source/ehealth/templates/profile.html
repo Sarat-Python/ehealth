@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{%block coloruserpage%}style="background:#416be0;"{%endblock%}
+{% block content %}
+<div class=text id=profile style="margin:auto;"><br>
+<!-- ui-dialog -->
+<!-- <a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Dialog</a>-->
+<div id="dialog" title="Add New Profile">
+<table style="font-size: 0.99em;width:350px;margin:auto;border: 0px solid;">
+<tr><td><br>First Name:</td><td><br><input type="text" class=dialogtextbox></td></tr>
+<tr><td><br>Last Name:</td><td><br><input type="text" class=dialogtextbox></td></tr>
+<tr><td>Relation:</td><td><input type="text" class=dialogtextbox></td></tr>
+<tr><td>Date Of Birth:</td><td><input type="text" class=dialogtextbox></td></tr>
+<tr><td>Blood Group</td><td><select class=selectbox>
+			<option>O+</option>
+			<option>A+</option>
+			<option>B+</option>
+			<option>AB+</option>
+			<option>A-</option>
+			<option>B-</option>
+			<option>AB-</option>
+			<option>O-</option></select></td></tr>
+<tr><td>Gender:</td><td style="margin-top: -5px;"><input type="radio" name="color" value="red">Male 
+<input type="radio" name="color" value="green">Female
+</td>
+</tr>
+</table>
+</div>
+		<script type="text/javascript">
+			$(function(){
+
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: false,
+					width: 550,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+						}, 
+						"Cancel": function() { 
+							$(this).dialog("close"); 
+						} 
+					}
+				});
+				
+				// Dialog Link
+				$('#dialog_link').click(function(){
+					$('#dialog').dialog('open');
+					return false;
+				});
+
+				
+			});
+		</script>
+<form  name="prof" id="prof" action="/myprofile" method="post">
+<table style="width:500px;margin:auto;">
+<tr><td colspan="2" align="center"><br>Update Profile</td></tr>
+<tr><td><br>First Name: </td><td><br><input type="text" class=profiletextbox value="{%for ab in userdata %}{{ab.firstName}}{%endfor%}"></td></tr>
+<tr><td><br>Last Name: </td><td><br><input type="text" class=profiletextbox value="{%for ab in userdata %}{{ab.lastName}}{%endfor%}"></td></tr>
+<tr><td><br>Blood Group</td><td><br><select class=selectbox>
+			<option>O+</option>
+			<option>A+</option>
+			<option>B+</option>
+			<option>AB+</option>
+			<option>A-</option>
+			<option>B-</option>
+			<option>AB-</option>
+			<option>O-</option></select></td></tr>
+<tr><td colspan="2" style="font-size:0.83em;"><input type="checkbox" >Disclose my identity in need of blood</td></tr>
+<tr><td><br>
+Date Of Birth: </td><td><br>
+	<input type="text" name="dob" />
+	<script type="text/JavaScript">
+	new tcal ({
+		// formname
+		'formname': 'prof',
+		// inputname
+		'controlname': 'dob'
+	});
+
+	</script>
+	<tr><td>Gender:</td>
+		<td><input type="radio" name="gender" value="Male">Male<input type="radio" name="gender" value="Female">Female</td>
+	</tr>
+	<tr><td><br>Marital Status:</td>
+		<td><br><input type="radio" name="Marital" value="Married">Married<input type="radio" name="Marital" value="Unmarried"/>Unmarried</td>
+	</tr>
+<tr><td><br>Address:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Street:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>City:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Pin Code:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Fax:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Telephone:</td><td><br><input type="text" class=profiletextbox></td></tr>
+<tr><td><br>Email:</td><td><br><input type="text" class=profiletextbox value="{%for ab in userdata %}{{ab.email}}{%endfor%}"></td></tr>
+<tr><td><br>Password:</td><td><br><input type="password" class=profiletextbox></td></tr>
+<tr><td><br>Confirm Password:</td><td><br><input type="password" class=profiletextbox></td></tr>
+
+</table></form>
+<br>
+			<div style="text-align: center;"><input type="button" value="Update" class=button><input type="reset" value="Reset" ></div>
+</div>
+
+{%endblock%}

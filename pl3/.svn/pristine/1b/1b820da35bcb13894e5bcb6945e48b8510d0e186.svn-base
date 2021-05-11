@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart7);
+
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+
+
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function testfields(){
+	if(isNaN(document.getElementById('wrktme').value) || !(document.getElementById('wrktme').value)){
+		alert("Please enter only Numerics");
+		document.getElementById('wrktme').focus();
+		return false;
+	}
+	else
+		if(isNaN(document.getElementById('exrcsegoal').value) || !(document.getElementById('exrcsegoal').value)){
+			alert("Please enter only Numerics");
+			document.getElementById('exrcsegoal').focus();
+			return false;
+		}
+		else
+			document.work.action="/exercise";
+}
+</script>
+<div class="content">
+   <div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h2><b>Cycling Tracker</b> </h2></span></div> 
+		<div style="height: 350px;">
+			<div style="float: left;width:480px;border: 0px solid #a1afbe;height: 300px;margin-top: 20px;" >
+					<form  name="cycle" id="cycle" action="/fitcycling" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Cycling Distance</td><td><br><input type="text" class=dialogtextbox name=cdstnce>&nbsp;&nbsp;miles/kilometers</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=cdgoal>&nbsp;&nbsp;miles/kilometers</td></tr>
+						<tr><td><br>Cycling Time</td><td><br><input type="text" class=dialogtextbox name=ct>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=ctgoal>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="cycdate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'cycle',
+								// inputname
+								'controlname': 'cycdate'
+							});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+			</div>
+			<div id="dhtmlgoodies_tabView10" style="float: right;margin-right:15px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_cycle" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Cycling Distance</th><th>Cycling Goal</th><th>Cycling Time</th><th>Cycling Time Goal</th></tr>
+						{%for cyc in cycle%}{%ifequal cyc.cyclingTime None%}{%else%}
+						<tr><td style="text-align: center;">{{cyc.collectionDate}}</td><td style="text-align: center;">{{cyc.cyclingDist}}</td><td style="text-align: center;">{{cyc.cyclingtGoal}}</td><td style="text-align: center;">{{cyc.cyclingTime}}</td><td style="text-align: center;">{{cyc.cyclingTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView10',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 0px solid #a1afbe;margin-top:-15px;margin:0px 25px 25px;">
+			<div> <h3><b>Cycling:</b></h3>
+				<p> Cycling helps to increase gains in muscular development is also known as periodization. There are many health benefits that are associated with cycling. Let's look at a few of the major benefits:	</p>
+			</div>
+					<p><b>Cycling is one of the easiest ways to exercise</b></p>
+					<p>You can ride a bicycle almost anywhere, at any time of the year, and without spending a fortune.
+					Many people are put off doing certain sports because of the high level of skill that seems to be
+					required, or perhaps because they can’t commit to a team sport due to time pressures. Most of us
+					know how to cycle and once you have learned you don’t forget. All you need is a bike, a half an hour
+					here or there when it suits, and a bit of confidence.</p>
+					
+					<div><h3><b>Cycling increases muscle tone</b></h3></div>
+					<p>Cycling improves general muscle function gradually, with little risk of over exercise or strain. Regular cycling strengthens leg muscles and is great for the mobility of hip and knee joints. You will gradually
+					begin to see an improvement in the muscle tone of your legs, thighs, rear end and hips.</p>
+					
+					<div><h3><b>Cycling builds stamina</b></h3></div>
+					<p>Cycling is a good way to build stamina. It is very effective in doing so, because people enjoy cycling and they wouldn’t really notice that they have
+					gone farther the last time they went cycling.</p>
+					
+					<div><h3><b>Cycling improves cardio-vascular fitness</b></h3></div>
+					<p>Cycling makes the heart pound in a steady manner and helps improve cardio-vascular fitness. Studies have shown that cycling to work will increase cardiovascular fitness by 3-7%. Cycling uses the largest
+					muscle groups the legs, raising heart rate to benefit stamina and fitness.</p>
+					
+					<div><h3><b>Cycling eats up calories</b></h3></div>
+					<p>Cycling is a good way to lose those unwanted pounds. Steady cycling burns approximately 300 calories per hour. If you cycle for 30 minutes every day you would burn 11 pounds of fat in a year.
+					Since it helps build muscle, cycling will also boost your metabolic rate long after you’ve finished your
+					ride.</p>
+					
+					<div><h3><b>Cycling improves heart health</b></h3></div>
+					<p>According to the British Medical Association; cycling just 20 miles a week can reduce the risk of
+					coronary heart disease by 50%. A major study of 10,000 civil servants suggested that those who
+					cycled 20 miles over the period of a week were half as likely to suffer heart disease as their non-
+					cycling colleagues.</p>
+					
+					<div><h3><b>Cycling reduces stress</b></h3></div>
+					<p>Any regular exercise can reduce stress and depression and improve well being and self esteem.Cycling outdoors is also a good way to be one with nature and to feel the breath of the earth. It takes
+					one’s mind out of everyday-life stress and rejuvenates his soul. When incorporating cycling into an over-all fitness program, there are many aspects to consider.</p>
+					
+					<b><p>Here are some important things to remember:</p></b>
+					
+					<div><h3><b>Consult your doctor</b></h3></div>
+					<p>Most people can do cycling. However, it is still best to consult your doctor when thinking about incorporating a cycling activity into an overall fitness program. They shall advise you regarding your
+					limits and capacities and what you should avoid doing.</p>
+					
+					<div><h3><b>Start slowly and then increase your cycling</b></h3></div>
+					<p>For beginners, they should employ a program wherein cycling is done three times a week. Doing it two times a week is also fine, but this depends on the capabilities of the person undergoing the
+					training.</p>
+					<div><h3><b>Increase speeds gradually </b></h3></div>
+					<p>Gradual increase in speeds is an important aspect of fitness cycling. Cycling can also be strenuous to the body and the key towards successful fitness cycling is to be patient and not hurry in increasing
+					your limits.</p>
+					<div><h3><b>Better safety  </b></h3></div>
+					<p>Cycling is great fun but it is important to get the right equipment for the activity. Head gear,kneepads, elbow pads should all be in place when cycling.
+					Fitness cycling can really be integrated into any fitness program. With every turn of the wheel, calories are burnt, strength is built and wellness is achieved.</p>
+					<p>From the Institute for Exercise and Sport Sciences, University of Copenhagen-Leisure time physical activity was inversely associated with all-cause mortality in both men and women in all age groups. Benefit was found from moderate leisure time physical activity, with further
+					benefit from sports activity and bicycling as transportation.</p>
+					
+					<div><h3><b>The Benefits of Cycling:</b></h3></div>
+					<p>Cycling in a regular manner will give healthy benefits to many organs or systems of our body:</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The circulatory and cardiovascular system – our heart is beating fast in order to pump blood
+					in our body quickly, to supply oxygen to our muscles, it allows them to work properly. Our
+					heart is pumping about 4 liters of blood in one minute, at rest. Our heart is also a muscle, if you
+					exercise like cycling; our heart gets stronger and bigger like our biceps. A person who is taking
+					part in a regular exercise activity can lower their risk of getting cardiovascular diseases than
+					those people who do not exercise.</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The blood pressure – having a regular exercise or cycling activity do prevent people to have a higher BP or blood pressure. If you keep on getting higher BP, cycling will be able to lower it.</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; Cholesterol buildup prevention – with regular exercise, you’ll be able to improve the levels
+					of the good cholesterol or High Density Lipoprotein in blood.</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; The Brain – those who keeps on exercising in a regular manner tends to get low fats and
+					good lipids profile. They’ve got less heart diseases and lesser risk of having stroke.</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The joints and muscles – daily exercises improve our muscle strengths, balance and
+					coordination. Lessening the falls when you’re older, aiding joints mobility and its lubrication.Endurance of our muscles and results of tones in the working muscles including thighs and
+					calves becomes prominent. An improvement in posture. It also helps the sufferers of arthritis,lessens pains and swelling in the joints, and increases flexibility.</p>
+					<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp; The Skin – our skin is one the major body organs, also for excretion just like the urine in the
+					urinary system. During cycling, the blood flow in our skin increase, removing our body’s heat and removes the waste through.</p>
+		<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>			
+					</div>
+		</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if emsg %}alert('{{emsg}}'){%endif%}
+{% if wmsg %}alert('{{wmsg}}'){%endif%}
+{% if smsg %}alert('{{smsg}}'){%endif%}
+{% if cmsg %}alert('{{cmsg}}'){%endif%}
+{% if hsmsg %}alert('{{hsmsg}}'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+{% endblock %}

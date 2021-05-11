@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart7);
+
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+
+
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function testfields(){
+	if(isNaN(document.getElementById('wrktme').value) || !(document.getElementById('wrktme').value)){
+		alert("Please enter only Numerics");
+		document.getElementById('wrktme').focus();
+		return false;
+	}
+	else
+		if(isNaN(document.getElementById('exrcsegoal').value) || !(document.getElementById('exrcsegoal').value)){
+			alert("Please enter only Numerics");
+			document.getElementById('exrcsegoal').focus();
+			return false;
+		}
+		else
+			document.work.action="/exercise";
+}
+</script>
+
+ <div class="content">
+ <div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h3><b>Walking</b> </h3></span></div> 
+		<div  style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 0px solid #a1afbe;margin-top: 20px;" >
+				<form  name="walk" id="walk" action="/walking" method="post">
+					<table style="font-size: 0.99em;margin:auto;border: 0px solid;font-size: 14px;">
+					<tr><td><br>Walking Distance</td><td><br><input type="text" class=dialogtextbox name=wdst>&nbsp;&nbsp;miles/kms</td></tr>
+					<tr><td>Goal</td><td style="width: 300px;"><input type="text" class=dialogtextbox name=wdgoal>&nbsp;&nbsp;miles/kms</td></tr>
+					<tr><td><br>Walking Time</td><td><br><input type="text" class=dialogtextbox name=walktme>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=wtgoal>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td><br>Collection Date:</td><td><br>
+						<input type="text" name="wlkdate" />
+						<script type="text/JavaScript">
+						new tcal ({
+							// formname
+							'formname': 'walk',
+							// inputname
+							'controlname': 'wlkdate'
+						});</script>
+						</td>
+					</tr>
+					<tr><td colspan="2">Brief Note: </td></tr>
+					<tr><td colspan="2"><textarea style="width: 335px;resize:none;" name=wlknote></textarea></td></tr>
+					<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView5" style="float: right;margin-right:15px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div3" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Walking Distance</th><th>Walking Disatnce Goal</th><th>Walking Time</th><th>Walking Time Goal</th></tr>
+						{%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+						<tr><td style="text-align: center;">{{wa.collectionDate}}</td><td style="text-align: center;">{{wa.walkingDist}}</td><td style="text-align: center;">{{wa.walkingDistGoal}}</td><td style="text-align: center;">{{wa.walkingTime}}</td><td style="text-align: center;">{{wa.walkingTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView5',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+						<div style=";border: 0px solid #a1afbe;margin-top:-15px;margin:25px;">
+							<div><h3><b>Benefits Of Walking:</b></h3></div>
+							<p>Walking is a great, natural way to achieve daily physical activity. It is one of the easiest ways to get the exercise you need to stay healthy.
+							Think of walking as an easy way to burn calories and stay fit while you go about your daily routine. You can make walking an important part of your life by getting friends and family to join you and by finding new ways to put steps in your day.</p>
+									<p>
+				
+				<div><h3><b>Key points</b></h3></div>
+				<p>If you're worried about how brisk walking might affect your health, talk with your doctor
+				before you start a walking program.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				Start with a short-term goal. For example, walk for 5 or 10 minutes every day. Or
+				increase your number of steps by 300 to 500 each day.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				After you've made walking a habit, set a longer-term goal. You may want to set a goal of
+				walking briskly for at least 30 minutes a day or work up to 10,000 steps a day. You can
+				try to do this for 5 days a week or more.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				You can wear a pedometer to track your steps each day.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				To stay motivated, find a walking partner, such as a family member, friend, or coworker.
+				Daily dog walks are also a great way to keep up your walking routine.</p>
+				<p>
+				There are many ways to walk, more without going on a long walk. Use the stairs instead of the
+				elevator, or park farther away from work or a store. Instead of e-mailing or phoning a coworker
+				or neighbor, walk over. When you meet with someone or visit with a friend, suggest taking a
+				walk instead of staying inside.</p>
+				<p>
+				To get the heart-healthy benefits of walking, you need to walk briskly enough to increase your
+				heart rate and breathing, but not so fast that you can't talk comfortably.</p>
+				<p>Brisk walking is a form of aerobic exercise. This is exercise that increases your heart rate for
+				an extended time. Aerobic exercise helps strengthen your heart, lungs, and muscles. A strong
+				heart carries more blood, along with oxygen and nutrients, to the rest of the body. Aerobic
+				exercise also lowers blood pressure and can help you stay at a healthy weight.</p>
+				<p>Walking and other aerobic exercise also can improve your mood and energy. Regular exercise
+				helps prevent anxiety and depression Walking also keeps your bones healthy. It is a weight-bearing activity, which means that it
+				works the muscles and bones against gravity. This can help reduce your risk of osteoporosis and
+				broken bones.Walking, like all physical activity, burns calories. Being active is important for staying at a
+				healthy weight.</p>	
+				<div><h3><b>
+				Walk with others</b></h3></div>
+				<p>
+				Ask family members, friends, and coworkers to join you. Set goals together.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				Join a walking group or club.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Set a goal to take part in an organized fitness walk.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Walk a dog every day.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				Plan family outings around walks together. Being physically active with kids sets an example they'll follow as they grow older.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Add steps whenever you can</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Schedule walks on your daily calendar.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				Buy a pedometer at a sporting goods store. A pedometer counts how many steps you take. The first time you wear it, count how many steps you normally take in a day. Wear
+				your pedometer every day, and set a goal for increasing the number of steps each day. At first, try to add 300 to 500 steps to your day. Then work toward 2,000 more steps a
+				day. A good long-term goal is to get 10,000 steps a day.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Instead of watching TV or going out to eat, go out for a walk.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;At work, get up and move around once an hour.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;When possible, walk to the grocery store, doctor appointments, work, school, or
+				shopping. You could walk a lap around the grocery store before you start shopping.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Park your car farther away from work or other places you're going.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Walk around your neighborhood or around a park.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Walk during TV commercials.</p>
+				<div><h3><b>Be safe</b> </h3></div>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Know your surroundings. Walk in a well-lighted, safe place.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Carry a cell phone for emergencies.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Wear comfortable shoes and socks that cushion your feet.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Pay attention to your walking surface. Use sidewalks and paths.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you usually walk outside and the weather is bad, take comfortable shoes to the mall and walk several laps inside.</p>
+				<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+				Drink plenty of water before, during, and after you are active. This is very important when it’s hot out and when you do intense exercise. Take a water bottle with you when
+				you walk.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>				
+						</div></div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if emsg %}alert('{{emsg}}'){%endif%}
+{% if wmsg %}alert('{{wmsg}}'){%endif%}
+{% if smsg %}alert('{{smsg}}'){%endif%}
+{% if cmsg %}alert('{{cmsg}}'){%endif%}
+{% if hsmsg %}alert('{{hsmsg}}'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+{% endblock %}

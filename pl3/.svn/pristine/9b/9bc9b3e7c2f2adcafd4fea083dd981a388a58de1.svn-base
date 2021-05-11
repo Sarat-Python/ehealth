@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{%block fitnesscolor%}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart7);
+
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{exercise.count}});
+    {%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{walking.count}});
+    {%for wa in walking%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{swim.count}});
+    {%for sm in swim%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+
+
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{cycle.count}});
+    {%for cy in cycle%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function testfields(){
+	if(isNaN(document.getElementById('wrktme').value) || !(document.getElementById('wrktme').value)){
+		alert("Please enter only Numerics");
+		document.getElementById('wrktme').focus();
+		return false;
+	}
+	else
+		if(isNaN(document.getElementById('exrcsegoal').value) || !(document.getElementById('exrcsegoal').value)){
+			alert("Please enter only Numerics");
+			document.getElementById('exrcsegoal').focus();
+			return false;
+		}
+		else
+			document.work.action="/fitexercise";
+}
+</script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+
+<div style="margin:auto;">
+
+
+<!-- Exercise Tracker -->
+	<div class="content" ><br>
+	     <div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h3><b>Exercise Tracker </b></h3></span></div>
+		<div  style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 0px solid #a1afbe;margin-top: 20px;" >
+				<form  name="work" id="work" method="post" onsubmit="return testfields()">
+					<table style="font-size: 0.99em;width:400px;margin:auto;border: 0px solid;font-size: 14px;">
+					<tr><td><br>WorkOut Time:</td><td   style="width:600px;"><br><input type="text" class="dialogtextbox" name="wrktme" id=wrktme>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name="exrcsegoal" id=exrcsegoal>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td style="width:200px;">Collection Date </td><td><input type="text"  name="exdate" />
+								<script type="text/JavaScript">
+									new tcal ({
+										// formname
+										'formname': 'work',
+										// inputname
+										'controlname':'exdate'
+									});</script>
+								</td>
+					</tr>
+					<tr><td colspan="2">Brief Note:</td></tr>
+					<tr><td colspan="2"><textarea style="width: 335px;resize:none;" name=exnote></textarea></td></tr>
+					<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView4" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab">
+						<div style="margin-top: 5px">
+					 		<div id="chart_div2" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Exercise Time</th><th>Exercise Goal</th><th>Brief Note</th></tr>
+						{%for ex in exercise%}{%ifequal ex.exerciseTime None%}{%else%}
+						<tr><td style="text-align: center;">{{ex.collectionDate}}</td><td style="text-align: center;">{{ex.exerciseTime}}</td><td style="text-align: center;">{{ex.exerciseGoal}}</td><td style="text-align: center;">{{ex.exerciseNote}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView4',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+			<div style="margin: 25px;"><h3>Exercise:</h3>
+			
+		<p>&nbsp;&nbsp;These activities will help you build strength, maintain bone density, improve balance,
+coordination, and mobility, reduce your risk of falling, and help you maintain independence
+in performing activities of daily life.&nbsp;&nbsp;Whatever your age, medical condition, or current level of
+activity, you are likely a perfect candidate for this gentle but powerful regimen of strengthening
+exercises.
+</p>
+	<p>Regular physical activity helps improve your overall health and fitness, and reduces your risk for
+many chronic diseases.&nbsp;&nbsp;Maintain appropriate calorie balance during each stage of life—childhood, adolescence, adulthood, pregnancy and breastfeeding, and older age.</p>
+<div><h3><b>The Benefits of Physical Activity:</b></h3>	
+		
+	<p>	Regular physical activity is one of the most important things you can do for your health. It can
+help:</p>
+</div>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Control your weight</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce your risk of cardiovascular disease</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce your risk for type 2 diabetes and metabolic syndrome</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Reduce your risk of some cancers</p>
+ <div style="float:right;"><embed style="margin-top: -120px;width: 370px;height: 250px;" src="http://www.youtube.com/v/Nj9t6fOCllA"></div>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Strengthen your bones and muscles</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Improve your mental health and mood</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Improve your ability to do daily activities and prevent falls, if you're an older adult</p>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Increase your chances of living longer</p>
+<div><h3><b>Strategy:</b></h3>
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+Start slowly: Cardiac events, such as a heart attack, are rare during physical activity.
+But the risk does go up when you suddenly become much more active than usual. For
+example, you can put yourself at risk if you don't usually get much physical activity and
+then all of a sudden do vigorous-intensity aerobic activity, like shoveling snow. That's
+why it's important to start slowly and gradually increase your level of activity.</p>
+
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+If you have a chronic health condition such as arthritis, diabetes, or heart disease, talk
+with your doctor to find out if your condition limits, in any way, your ability to be active.
+Then, work with your doctor to come up with a physical activity plan that matches your
+abilities. If your condition stops you from meeting the minimum Guidelines, try to do as
+much as you can. What's important is that you avoid being inactive. Even 60 minutes a
+week of moderate-intensity aerobic activity is good for you.</p>
+
+<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+The bottom line is - the health benefits of physical activity far outweigh the risks of
+getting hurt.</p>
+<div><h3><b>Categories:</b></h3></div>
+<div><h3><b>Warm-up:</b></h3></div>
+
+			<p>To get your muscles warm and loose for strength training, walk for five to ten minutes outside if
+			weather permits, or inside around the house or on a treadmill if you have one. Walking will help direct
+			needed blood flow to your muscles and prepare your body for exercise. Warming up is important for
+			preventing injury as well as gaining maximal benefit from the exercise, because loose, warm muscles
+			will respond better to the challenge of lifting weights.</p>
+			<div><h3><b>Stage 1:</b></h3>
+			<p>The following four exercises comprise Stage 1 of the Growing Stronger Program. When you've
+			been doing the exercises of this stage for at least two weeks, OR if you are fairly fit right now,
+			you can add the exercises in Stage 2. Remember to always do the Warm-up and Cool down as
+			part of each exercise session.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Squats</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Wall Pushups</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Toe Stands</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Finger Marching</p>
+			<div><h3><b>Stage 2:</b></h3>
+			<p>When you've been doing the exercises from Stage 1 for at least two weeks, OR if you are fairly fit right now, you can add these Stage 2 exercises. When you've been doing the exercises from Stages 1 and 2 for at least six weeks, you can add the exercises in Stage 3. Remember to always
+			do the Warm-up and Cool down as part of each exercise session.</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Biceps Curl</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Step Ups</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Overhead Press</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Hip Abduction</p>
+			<div><h3><b>Stage 3:</b></h3>
+			<p>When you've been doing the exercises from Stage 1 and Stage 2 for at least six weeks, you can
+			add these Stage 3 exercises. Remember to always do the Warm-up and Cool down as part of
+			each exercise session:</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Knee Extension</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Knee Curl</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Pelvic Tilt</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Floor Back Extension</p></div></div></div>
+			<div><h3><b>Cool down Activity:</b></h3>
+			
+			
+			<p>Cooling down should consist of the following:
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			5 to 10 minutes jogging/walking - decrease body temperature and remove waste
+			products from the working muscles</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			5 to 10 minutes static stretching exercises</p>
+			<p>Various other Cool- down related activities:</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			Quadriceps Stretch</p>
+			<div style="float:right;margin-top: -20px;"><img style="" src="/static/images/image.jpg"></div>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Hamstring/Calf Stretch</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Chest and Arm Stretch</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Neck, Upper Back, and Shoulder Stretch</p>
+			<div><h3><b>An appropriate cool down will:</b></h3>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			aid in the dissipation of waste products - including lactic acid</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;reduce the potential for DOMS</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			reduce the chances of dizziness or fainting caused by the pooling of venous blood at the
+			extremities</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			reduce the level of adrenaline in the blood</p>
+			<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;
+			allows the heart rate to return to its resting rate</p>
+</div></div></div>
+		</div>
+	</div>
+
+
+</div>
+</div>
+
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if emsg %}alert('{{emsg}}'){%endif%}
+{% if wmsg %}alert('{{wmsg}}'){%endif%}
+{% if smsg %}alert('{{smsg}}'){%endif%}
+{% if cmsg %}alert('{{cmsg}}'){%endif%}
+{% if hsmsg %}alert('{{hsmsg}}'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+{% endblock %}

@@ -1,0 +1,801 @@
+{% extends 'base.html' %}
+{%block colorselfhelp%}style="background:#416be0;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart1);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Year');
+  data.addColumn('number', 'BMI');
+  data.addColumn('number', 'GOAL');
+  data.addRows({{wellness.count}});
+  {%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+  data.setValue({{forloop.counter0}}, 0, '{{bmi.collectionDate}}');
+  data.setValue({{forloop.counter0}}, 1, {{bmi.bmi}});
+  data.setValue({{forloop.counter0}}, 2, {{bmi.bmiGoal}});{%endifequal%}
+  {%endfor%}
+  var chart = new google.visualization.LineChart(document.getElementById('BMI_CHART'));
+  chart.draw(data, {width: 460, height: 250, title: 'Ideal BMI is 20-25',
+                    hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+                    vAxis: {title: 'BMI', titleTextStyle: {color: 'blue'}}
+                   });
+}
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{wellness.count}});
+    {%for bp in wellness%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+  
+function drawChart2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Exercise Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for ex in wellness%}{%ifequal ex.exerciseTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{ex.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{ex.exerciseTime}});
+    data.setValue({{forloop.counter0}}, 2, {{ex.exerciseGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, {width: 460, height: 250, title: 'Exercise',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Exercise Time', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+ 
+function drawChart3() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Walking Time');
+    data.addColumn('number', 'GOAL Walking Time');
+    data.addRows({{wellness.count}});
+    {%for wa in wellness%}{%ifequal wa.walkingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{wa.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{wa.walkingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{wa.walkingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+    chart.draw(data, {width: 460, height: 250, title: 'Walking',
+		    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+		        vAxis: {title: 'walking Time', titleTextStyle: {color: 'blue'}}
+		       });
+  }
+function drawChart4() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Swimming Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for sm in wellness%}{%ifequal sm.swimTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sm.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sm.swimTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sm.swimTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+    chart.draw(data, {width: 460, height: 250, title: 'Swimming',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Swimming Time', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for su in wellness%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+function drawChart6() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sleep Time');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for sl in wellness%}{%ifequal sl.sleepTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{sl.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{sl.sleepTime}});
+    data.setValue({{forloop.counter0}}, 2, {{sl.sleepTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_sleep'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sleep',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sleeping Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart7() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Cycling');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for cy in wellness%}{%ifequal cy.cyclingTime None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{cy.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{cy.cyclingTime}});
+    data.setValue({{forloop.counter0}}, 2, {{cy.cyclingTimeGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_cycle'));
+    chart.draw(data, {width: 460, height: 250, title: 'Clycling',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'cycling Time', titleTextStyle: {color: 'blue'}}
+    });
+  }
+  
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for bt in wellness%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+function drawChart9() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Heart Rate');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{wellness.count}});
+    {%for hr in wellness%}{%ifequal hr.heartRate None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{hr.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{hr.heartRate}});
+    data.setValue({{forloop.counter0}}, 2, {{hr.heartRateGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_heart'));
+    chart.draw(data, {width: 460, height: 250, title: 'Heart Rate',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Heart Rate', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+<div id="dhtmlgoodies_tabView1">
+<!-- BMI -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div style="height: 350px;">
+				<div style="float: left;width:480px;border: 1px solid #a1afbe;height:300px;;margin-top: 20px;">
+					<form method="POST" action="\" name="BMIform"><br>
+						<table style="margin: auto;font-size: 14px;">
+						  <tr><td width="50">Weight</td><td> <input type="text" name="wt" size="4"><select name="wu" size="1" onchange="poundsAndKilos(this.form)"><option selected="">pounds</option><option>kilograms</option></select></td>
+								<td><em><font size="1">can convert lbs to kg</font></em></td>
+						  </tr>
+						  <tr><td>Height</td><td colspan="2"> <input type="text" name="ht" size="4">
+						    	<select name="hu" size="1" onchange="inchesCm(this.form)"><option selected="">inches</option><option>cm</option></select>&nbsp;or 
+						    	<select name="htf" size="1" onchange="feetAndInches(this.form)">
+						        <option value="1">1'</option><option value="2">2'</option><option value="3">3'</option><option value="4">4' </option><option value="5" selected="">5' </option><option value="6">6' </option> <option value="7">7' </option>
+						        </select>
+						        <select name="hti" size="1" onchange="feetAndInches(this.form)">
+						        <option value="0">0'' </option><option value="1">1'' </option><option value="2">2'' </option><option value="3">3'' </option><option value="4">4'' </option><option value="5">5'' </option><option value="6" selected="">6'' </option><option value="7">7'' </option> <option value="8">8'' </option> <option value="9">9'' </option> <option value="10">10'' </option><option value="11">11'' </option>
+						        </select></td>
+						  </tr>
+						  <tr><td>&nbsp;</td><td>
+								<br><input name="button" onclick="CalcIt(this.form)" type="button" value="Calculate" style="font-size: 10px;">&nbsp;&nbsp;&nbsp;
+								<input name="button" type="reset" value="Reset" style="font-size: 10px;"></td>
+						  </tr>
+						  <tr><td colspan="3"><font size="3">Body Mass Index:</font><input maxlength="5" name="bmi" size="5" type="text" style="width:80px;font-size: 20px;border: 0px;text-align: center;background-color: transparent;"></td><td></td>
+						  </tr>
+						</table>
+						<div style="visibility: hidden;"><input type="text" name="user" value={{session.username}}><input type="text" name="Years" size="4" ><input type="text" name="Gender" value="Woman" ><input type="text" name="AgeCat" value="Adult"></div>
+						<div style="margin: auto;text-align: center;margin-top: -40px;">    
+							<table style="margin: auto;">
+								<tr><td>Collection Date</td><td><input type="text" name="bmidate" /></td>
+									<td><script type="text/JavaScript">
+										new tcal ({
+											// formname
+											'formname': 'BMIform',
+											// inputname
+											'controlname': 'bmidate'
+										});
+										</script></td>
+								</tr>
+								<tr><td>BMI Goal</td><td><input type="text" name="bmigoal"></td></tr>
+							</table>
+						</div>
+						<div style="text-align: center;"><input name="button" type="submit" value="Save" style="font-size: 10px;"><br></div>
+				</form>
+							</div>
+				
+					<div id="dhtmlgoodies_tabView2" style="float: right;margin-right:5px;" >
+						<span style="margin-left: 200px;">Track record</span>
+						<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top:5px;">
+					 		<div id="BMI_CHART"></div>
+						</div>
+						</div>
+						<div class="dhtmlgoodies_aTab" >	
+							<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+							<table class="sample" style="margin: auto;">
+							<tr><th>Date</th><th>Weight</th><th>Height</th><th>BMI</th><th>BMI Goal</th></tr>
+							{%for bmi in wellness%}{%ifequal bmi.bmi None%}{%else%}
+							<tr><td style="text-align: center;">{{bmi.collectionDate}}</td><td style="text-align: center;">{{bmi.weight}}</td><td style="text-align: center;">{{bmi.height}}</td><td style="text-align: center;">{{bmi.bmi}}</td><td style="text-align: center;">{{bmi.bmiGoal}}</td></tr>
+							{%endifequal%}
+							{%endfor%}
+							</table>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+					initTabs('dhtmlgoodies_tabView2',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+					</script>
+			</div>
+			<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+				<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 17px">According to the Dietary Guidelines , a healthy eating plan:<br>
+				&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emphasizes fruits, vegetables, whole grains, and fat-free or low-fat milk and milk products<br>
+				&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Includes lean meats, poultry, fish, beans, eggs, and nuts<br>
+				&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is low in saturated fats, trans fats, cholesterol, salt (sodium), and added sugars<br>
+				&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stays within your daily calorie needs
+				<p><br>BMI Less than 20 — Under Weight<br>BMI 20-25 — Normal Weight;<br>BMI 25-30 — Over Weight;<br>BMI 30-40 — Obese;<br>BMI Over 40 — Severely Obese;<br></p>
+				</div>
+			</div>
+	</div>
+<!-- Blood Pressure -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Blood Pressure Tracker" style="height:350px;">
+			<div style="float: left;width:480px;border: 1px solid #a1afbe;height:300px;margin-top: 20px;" >
+				<form  name="bloodpressure" id="bloodpressure" action="/home" method="post">
+					<table style="font-size: 0.99em;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Blood pressure</td><td><br><input type="number" size="4" name=bldprs1>&nbsp;&nbsp;/&nbsp;&nbsp;<input type="number" size="4" name="bldprs2">&nbsp;&nbsp;mmHg</td></tr>
+						<tr><td>Collection Date </td><td><input type="text"  name=cdate />
+							<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'bloodpressure',
+									// inputname
+									'controlname':'cdate'
+								});
+								</script></td>
+						</tr>
+						<tr><td><br>Goal</td><td><br><input type="text" class=dialogtextbox name=bpgoal></td></tr>
+						<tr><td colspan="2">Brief Note: </td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;" ></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView3" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab">
+						<div style="margin-top: 5px;">
+					 		<div id="chart_div1"></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Systolic Blood Pressure</th><th>Diastolic Blood Pressure</th><th>Goal</th></tr>
+						{%for bp in wellness%}{%ifequal bp.bloodPressure1 None%}{%else%}
+						<tr><td style="text-align: center;">{{bp.collectionDate}}</td><td style="text-align: center;">{{bp.bloodPressure1}}</td><td style="text-align: center;">{{bp.bloodPressure2}}</td><td style="text-align: center;">{{bp.bpGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView3',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+				<h5>Blood Pressure Table</h5>
+				<div style="text-align: left;margin: 15px">
+					&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;140 - 90 - Stage 1 High Blood Pressure<br>
+					&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;140 - 90 - Borderline High<br>
+					&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;130 - 85 - High Normal<br>
+					&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120 - 80 - Normal Blood Pressure<br>
+					&rArr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;110 - 75 - Low Normal<br>
+					<br><br><br><br>
+				</div>
+		</div>
+	</div>	
+<!-- Exercise Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Exercise Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 1px solid #a1afbe;margin-top: 20px;" >
+				<form  name="work" id="work" action="/exercise" method="post">
+					<table style="font-size: 0.99em;width:400px;margin:auto;border: 0px solid;font-size: 14px;">
+					<tr><td><br>WorkOut Time:</td><td   style="width:600px;"><br><input type="text" class=dialogtextbox name=wrktme>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name=exrcsegoal>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td style="width:200px;">Collection Date </td><td><input type="text"  name=exdate />
+								<script type="text/JavaScript">
+									new tcal ({
+										// formname
+										'formname': 'work',
+										// inputname
+										'controlname':'exdate'
+									});</script>
+								</td>
+					</tr>
+					<tr><td colspan="2">Brief Note:</td></tr>
+					<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+					<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView4" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab">
+						<div style="margin-top: 5px">
+					 		<div id="chart_div2" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Exercise Time</th><th>Exercise Goal</th></tr>
+						{%for ex in wellness%}{%ifequal ex.exerciseTime None%}{%else%}
+						<tr><td style="text-align: center;">{{ex.collectionDate}}</td><td style="text-align: center;">{{ex.exerciseTime}}</td><td style="text-align: center;">{{ex.exerciseGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView4',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+				<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px">
+				<p>Include some type of strength training in your weekly exercise regimen no matter what your fitness goals are. Resistance training provides many health benefits. 
+				<p>&rArr;&nbsp;&nbsp;&nbsp;Don't take the all or nothing approach. It's better to do a little training than none at all. So, even if you can only fit one strength training routine in a week, you'll still benefit from it.</p>
+				<p>&rArr;&nbsp;&nbsp;&nbsp;If you're a woman, don't be afraid of strength training. You won't bulk up (unless you are really trying to). And, resistance training is easy to start.</p>
+				</div>
+		</div>
+	</div>
+<!-- Walking Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Walking Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 1px solid #a1afbe;margin-top: 20px;" >
+				<form  name="walk" id="walk" action="/walking" method="post">
+					<table style="font-size: 0.99em;margin:auto;border: 0px solid;font-size: 14px;">
+					<tr><td><br>Walking Distance</td><td><br><input type="text" class=dialogtextbox name=wd>&nbsp;&nbsp;miles/kms</td></tr>
+					<tr><td>Goal</td><td style="width: 300px;"><input type="text" class=dialogtextbox name=wdgoal>&nbsp;&nbsp;miles/kms</td></tr>
+					<tr><td><br>Walking Time</td><td><br><input type="text" class=dialogtextbox name=walktme>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=wtgoal>&nbsp;&nbsp;minutes</td></tr>
+					<tr><td><br>Collection Date:</td><td><br>
+						<input type="text" name="wlkdate" />
+						<script type="text/JavaScript">
+						new tcal ({
+							// formname
+							'formname': 'walk',
+							// inputname
+							'controlname': 'wlkdate'
+						});</script>
+						</td>
+					</tr>
+					<tr><td colspan="2">Brief Note: </td></tr>
+					<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+					<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView5" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div3" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Walking Distance</th><th>Walking Disatnce Goal</th><th>Walking Time</th><th>Walking Time Goal</th></tr>
+						{%for wa in wellness%}{%ifequal wa.walkingTime None%}{%else%}
+						<tr><td style="text-align: center;">{{wa.collectionDate}}</td><td style="text-align: center;">{{wa.walkingDist}}</td><td style="text-align: center;">{{wa.walkingDistGoal}}</td><td style="text-align: center;">{{wa.walkingTime}}</td><td style="text-align: center;">{{wa.walkingTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView5',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px">Make ample preparations before you go for a walk. The following are some tips on how you can enhance your walking experience:<br>
+					&rArr;&nbsp;&nbsp;&nbsp;Wear shoes and socks that are comfortable. Use cotton socks; avoid synthetic material as they do not allow sweat to evaporate.<br>
+					&rArr;&nbsp;&nbsp;&nbsp;Wear loose protective clothing, preferably cotton ones. Dress in accordance to weather conditions. Wear bright colors after dark so that motorists can spot you.<br>
+					&rArr;&nbsp;&nbsp;&nbsp;Do warm-up sessions—walk slowly for about 5 min until your muscles warm up. Warming up your muscles reduces your risk of injury.<br>
+					&rArr;&nbsp;&nbsp;&nbsp;After warming up, perform stretching exercises for about 5 min before walking.<br>
+					&rArr;&nbsp;&nbsp;&nbsp;To reduce stress on your heart and muscles, end each walking session by walking slowly for about 5 min. Then, repeat your stretches.<br>
+					&rArr;&nbsp;&nbsp;&nbsp;If you are so out of breath that you cannot carry on a conversation with the person you are walking with, you are probably walking too fast and should slow down.<br>
+				</div>
+		</div>
+	</div>
+<!-- Swimming Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Swimming Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 1px solid #a1afbe;margin-top: 20px;" >
+				<form  name="swim" id="swim" action="/swimming" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Swimming Distance</td><td><br><input type="text" class=dialogtextbox name=swimdst>&nbsp;&nbsp;meters</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=swimgoal>&nbsp;&nbsp;meters</td></tr>
+						<tr><td><br>Swimming Time</td><td><br><input type="text" class=dialogtextbox name=swimtme>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=swimtmegoal>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="swmdate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'swim',
+								// inputname
+								'controlname': 'swmdate'
+							});</script>
+							</td>
+						</tr>
+						<tr><td colspan="2">Brief Note: </td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView6" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div4" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Swimming Distance</th><th>Swimming Disatnce Goal</th><th>Swimming Time</th><th>Swimming Time Goal</th></tr>
+						{%for sw in wellness%}{%ifequal sw.swimTime None%}{%else%}
+						<tr><td style="text-align: center;">{{sw.collectionDate}}</td><td style="text-align: center;">{{sw.swimDist}}</td><td style="text-align: center;">{{sw.swimDistGoal}}</td><td style="text-align: center;">{{sw.swimTime}}</td><td style="text-align: center;">{{sw.swimTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView6',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+				</div>
+	</div>
+<!-- Sugar Levels -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Sugar Levels(in blood)" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 1px solid #a1afbe;margin-top: 20px;" >
+				<form  name="sugar" id="sugar" action="/sugar" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Sugar Level:</td>
+						<td><br><input maxlength="5" size="5" type="text" name=slevel style="font-size: 20px;">mg/dl</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=sgoal>&nbsp;&nbsp;mg/dl</td></tr>
+						<tr><td><br>Result Date:</td><td><br>
+								<input type="text" name="sdate" />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'sugar',
+									// inputname
+									'controlname': 'sdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView8" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div5" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Sugar Level</th><th>Sugar Level Goal</th></tr>
+						{%for su in wellness%}{%ifequal su.sugarLevel None%}{%else%}
+						<tr><td style="text-align: center;">{{su.collectionDate}}</td><td style="text-align: center;">{{su.sugarLevel}}</td><td style="text-align: center;">{{wa.sugarLevelGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView8',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px">
+					<p>Normal Values Levels vary according to the laboratory, but in general up to 100 milligrams per deciliter (mg/dL) are considered normal.
+					&rArr;&nbsp;&nbsp;&nbsp;Persons with levels between 100 and 126 mg/dL may have impaired fasting glucose or prediabetes. These levels are considered to be risk factors for type 2 diabetes and its complications.
+					<p>&rArr;&nbsp;&nbsp;&nbsp;Diabetes is typically diagnosed when fasting blood glucose levels are 126 mg/dL or higher.
+					Normal value ranges may vary slightly among different laboratories. Talk to your doctor about the meaning of your specific test results</p>
+				</div>
+		</div>
+	</div>
+<!-- Sleeping Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="sleeping Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;border: 1px solid #a1afbe;height: 300px;margin-top: 20px;" >
+					<form  name="sleep" id="sleep" action="/sleep" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Sleep time</td><td><br><input type="text" class=dialogtextbox name=slptme>&nbsp;&nbsp;hours</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=sltmegoal>&nbsp;&nbsp;hours</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="sldate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'sleep',
+								// inputname
+								'controlname': 'sldate'
+							});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note: </td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+			</div>
+			<div id="dhtmlgoodies_tabView9" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_sleep" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Sleeping Time</th><th>Sleeping Time Goal</th></tr>
+						{%for sl in wellness%}{%ifequal sl.sleepTime None%}{%else%}
+						<tr><td style="text-align: center;">{{sl.collectionDate}}</td><td style="text-align: center;">{{sl.sleepTime}}</td><td style="text-align: center;">{{sl.sleepTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView9',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+		</div>
+	</div>
+<!-- cycling Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Cycling Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;border: 1px solid #a1afbe;height: 300px;margin-top: 20px;" >
+					<form  name="cycle" id="cycle" action="/cycling" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Cycling Distance</td><td><br><input type="text" class=dialogtextbox name=cdstnce>&nbsp;&nbsp;miles</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=cdgoal>&nbsp;&nbsp;miles</td></tr>
+						<tr><td><br>Cycling Time</td><td><br><input type="text" class=dialogtextbox name=ct>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name=ctgoal>&nbsp;&nbsp;minutes</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+							<input type="text" name="cycdate" />
+							<script type="text/JavaScript">
+							new tcal ({
+								// formname
+								'formname': 'cycle',
+								// inputname
+								'controlname': 'cycdate'
+							});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+			</div>
+			<div id="dhtmlgoodies_tabView10" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_cycle" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Cycling Distance</th><th>Cycling Goal</th><th>Cycling Time</th><th>Cycling Time Goal</th></tr>
+						{%for cyc in wellness%}{%ifequal cyc.cyclingTime None%}{%else%}
+						<tr><td style="text-align: center;">{{cyc.collectionDate}}</td><td style="text-align: center;">{{cyc.cyclingDist}}</td><td style="text-align: center;">{{cyc.cyclingtGoal}}</td><td style="text-align: center;">{{cyc.cyclingTime}}</td><td style="text-align: center;">{{cyc.cyclingTimeGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView10',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+		</div>
+	</div>
+<!-- Body Temperature -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Body Temperature Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;border: 1px solid #a1afbe;height: 300px;margin-top: 20px;" >
+				<form  name="btemp" id="btemp" action="/bodytemp" method="post">
+					<table style="font-size: 0.99em;width:480px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Temperature:</td><td><br><input type="text" class=dialogtextbox name=ptemp>degrees/Fahrenheit</td></tr>
+						<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name=tempgoal>degrees/Fahrenheit</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name=btempdate />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'btemp',
+									// inputname
+									'controlname': 'btempdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView11" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_temp" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Present Body Temperature</th><th>Goal</th></tr>
+						{%for bdy in wellness%}{%ifequal bdy.temperature None%}{%else%}
+						<tr><td style="text-align: center;">{{bdy.collectionDate}}</td><td style="text-align: center;">{{bdy.temperature}}</td><td style="text-align: center;">{{bdy.temperatureGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView11',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px;"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+		</div>
+	</div>
+<!-- Heart Rate Tracker -->
+	<div class="dhtmlgoodies_aTab"><br>
+		<div title="Heart Rate Tracker" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;border: 1px solid #a1afbe;margin-top: 20px;" >
+				<form  name="heart" id="heart" action="/heartrate" method="post">
+					<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Heart Rate:</td><td><br><input type="text" class=dialogtextbox name=phr>&nbsp;&nbsp;bpm</td></tr>
+						<tr><td>Goal:</td><td><input type="text" class=dialogtextbox name=hrtgoal>&nbsp;&nbsp;bpm</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name="hrdate" />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'heart',
+									// inputname
+									'controlname': 'hrdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Ok"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView12" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_heart" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Present Heart Rate</th><th>Goal</th></tr>
+						{%for hrt in wellness%}{%ifequal hrt.heartRate None%}{%else%}
+						<tr><td style="text-align: center;">{{hrt.collectionDate}}</td><td style="text-align: center;">{{hrt.heartRate}}</td><td style="text-align: center;">{{hrt.heartRateGoal}}</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+				   </div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView12',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+		<div style=";border: 1px solid #a1afbe;margin-top:-15px;;text-align: center;">
+			<h5>Health Ideas</h5>
+				<div style="text-align: left;margin: 15px;"><p>There's no ground impact when you swim, and so you protect the joints from stress and strain.
+				 In fact, the Arthritis Foundation strongly recommends swimming and water activities for this reason, so much so that they sponsor water classes all over the country.</p>
+				<p> Water aerobics classes are also desirable for this reason, because even if you do jump and hit the bottom of the pool, you do so with less force because you're buoyant in the water.</p>
+				<p> Not only that, but if you wear or hold a flotation device during a water aerobics class, the impact is even less.</p></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	initTabs('dhtmlgoodies_tabView1',Array('Body Mass Index','Blood Pressure','Exercise','Walking','Swimming','Sugar Levels','Hours slept','cycling','Body Temperature','Heart Rate'),0,980,Array(true,true));
+	</script>
+</div>
+{% endblock %}

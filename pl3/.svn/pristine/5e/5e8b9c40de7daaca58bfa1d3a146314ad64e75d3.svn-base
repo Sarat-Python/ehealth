@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+{% if msgaccount %}
+	<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							//window.location = "new.html"
+           						//redirect('new.html');
+						}, 
+						//"Cancel": function() { 
+						//	$(this).dialog("close"); 
+						//} 
+					}
+				});
+				
+				// Dialog Link
+				//$('#dialog_link').click(function(){
+				//	$('#dialog').dialog('open');
+				//	return false;
+				//});
+				
+			});
+		</script>
+	<!-- 	<p><a href="#" id="dialog_link">Open Dialog</a></p>-->
+		<!-- ui-dialog -->
+		<div id="dialog" title="Registration success">
+			<p>Your Account has been created.please login </p>
+		</div>{% endif %}
+{% if msgLogindetails%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+						}
+				});
+			});
+			</script>
+	<div id="errordialog" title="Error Message">
+	<p>Invalid Details </p>
+	</div>{% endif %}
+{% if msgLoginall%}
+<script type="text/javascript">
+			$(function(){
+				// Dialog			
+				$('#errordialog1').dialog({
+					autoOpen: true,
+					width: 500,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+							window.location = "#"
+           						//redirect('new.html');
+						}
+					}
+				});
+			});
+			</script>
+	<div id="errordialog1" title="Error Message">
+	<p>Please fill in all fields</p>
+	</div>{% endif %}
+<div  class="content" >
+		<div style="margin: 25px;text-align: center;"><h2><b>House Keeping</b></h2>
+		<p>Most home cleaning tasks are divided into one of three categories,maintenance cleaning,thorough cleaning,and seasonal cleaning.Housekeeping is one of the most important daily household chores. It is necessary to clean the house on a regular basis otherwise all kinds of germs may accumulate in the house making the persons living there more prone to diseases and infections.</p>
+		</div>
+		<div style="margin:25px;">
+		<div style="height:180px;border:0px solid;"><span style="width:300px;float:right;margin-top:0px;margin-left:50px;border:0px solid;"><img src="/static/images/housekeeping1.jpg" height="180px" width="280px"></span>
+		<p>To be successful at the cleaning part of housekeeping, it is essential to choose the right supplies, and develop a schedule. </p>
+		<p> To really keep your home in the best shape, some organizational strategies will be needed.</p>
+		<p>Organizing is a vital part of housekeeping.</p>
+		<p>To keep your home organized, you'll need to be aware of clutter control, storage issues, and filing needs. These three areas create the most organizational issues in a home. </p>
+		</div>
+		<div><h3>Tips to be followed:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Spend cleaning few minutes each day so that it will not be a burden at any time. Once you get into the habit of daily cleaning, you'll always be motivated to keep the house looking great.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Try to clear the clutter; an easy way to de-clutter is to donate old toys, clothes, books and other items.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Get the Kids Involved, when everyone pitches in, cleaning becomes less mom's job and more of a family responsibility.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Tackle one room at a time ; focus on one room at a time to make housework more manageable. Plan room by room cleaning for the kitchen, bedroom, bathroom and living room so you're not overwhelmed.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;  Look beyond the Obvious, a good cleaning routine goes beyond your basics of dusting, sweeping and cleaning countertops.</p>
+		</div>				
+		
+	</div>	</div>	
+<script type="text/javascript">
+//{% if msgLoginall%}alert('Please fill in all fields'){%endif%}
+//{% if msgLogindetails%}alert('Invalid details'){%endif%}
+
+</script>
+
+{% endblock %}

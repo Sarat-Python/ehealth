@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Manicure -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h2 style="text-align: center;"><b>Manicure </b></h2>
+		<h3>Dark Circles Under Eye, under eye skincare treatment women </h3>
+		<p>A manicure is a cosmetic beauty treatment for the fingernails and hands. A home manicure can treat just the hands, just the nails, or both. A standard manicure usually includes filing and shaping of the nails and the application of polish, but there are also specialty manicures, like: Salon Manicure, French Manicure, Spa Manicure. Treatments for hands usually include soaking in a softening substance and application of hand lotion.</p>
+		<h3>Purpose:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Prevent hang - nail formation.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Prevents nail damages like splits, tears, and fragile tips.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The accompanying massage of the hands improves and increases the blood circulation, suppleness and flexibility of the hands and wrist.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Discourages wrinkling of the skin on the hand, which is one of the first body parts to show the sign of aging.</p>
+        <h3>Tools:</h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Bowl of warm water or finger bath</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Nail clippers</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Cuticle knife and clippers</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Cuticle pusher/Hoof stick</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Nail file/emery board, buffer, scissors, brush and other Manicure Tools</p>
+		<p><strong>Regular manicures and pedicures are a great way to keep your nails clean and tidy while allowing yourself to feel pampered.</strong> But finding time to go get your nails done professionally is not always possible or within the budget. The solution to these problems is easy: Give yourself pedicures and manicures at home.</p>
+	    <h3>Instructions</h3>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Take off any old nail polish by wiping nails with a cotton ball soaked in nail polish remover.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Soak hands and feet for five minutes in a pedicure bowl filled with a solution of warm water and mineral salts.
+	    </p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Scrub hands and feet using 1/2 tbsp. of body scrub on a nail cleaner brush. Rinse with warm water.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Pat hands and feet dry with a towel.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Massage hands and feet with a moisturizing lotion until your skin fully absorbs the lotion.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Trim nails to desired length with nail scissors or clippers.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Run an angled nail cleaner under the tip of each nail to remove any dirt.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Apply a drop of cuticle oil to the bottom of each nail. Use a cuticle pusher to scrunch the cuticles backward. Clip away each cuticle with cuticle nippers.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Move a nail buffer side to side across each nail remove any ridges, creating a smoother surface.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Wipe nails clean with a cotton ball soaked in nail polish remover to remove any leftover lotion.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Apply a layer of clear base coat to each nail. After two minutes of drying time, apply two coats of colored nail polish with two minutes of drying time in between. Apply a layer of clear top coat to finish.</p>
+	    <p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Dry nails for 20-30 minutes, avoiding any activity so that the polish does not get smudged or dented.</p>
+	</div>	
+</div>		
+{% endblock%}

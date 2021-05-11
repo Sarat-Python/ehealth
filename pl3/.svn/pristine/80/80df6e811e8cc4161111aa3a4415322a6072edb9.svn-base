@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block womencolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+
+	
+<!-- Hair Tips -->
+	<div  class="content" >
+
+		<div style="margin: 25px;"><h3 style="text-align: center;"><b>Hair Care Tips</b></h3>
+		<h3>Remedies for dandruff: </h3>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your problem is of milder nature, shampooing once a day or twice a day will definitely help in keeping it under control.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Begin with only milder shampoos only. Stronger shampoos can irritate your hair and make dandruff flaking worse.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your regular shampoo is not helpful in getting rid of dandruff, go in for anti-dandruff shampoo and the situation will improve in a couple of weeks.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Finding the right shampoo for your hair could be a process of trial and error. Try out various shampoos and see which one works best for your hair. Even rotating shampoos often can be good for your hair.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Once you have discovered an anti-dandruff shampoo that is good for you, keep using it or your dandruff will return in no time.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;While using anti-dandruff shampoos lather and rinse twice. The first cycle cleans only your scalp and the second cleans scalp and hairs thoroughly.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Avoid using oil after shampooing as it considerably lowers the affect of shampoos.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you have a feeling that your dandruff is a severe case of dandruff, it is better to have an appointment with a dermatologist.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Poor health or lack of proper diet can cause dandruff. Ensure to get enough sleep and eat safely.</p>
+        <h3>Remedy for Oily Hair</h3>
+		<p>Oily hair can be a cause of pain. Follow some of these tips to make it better.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your hair is continuously oily, blot it during the day using a blotting paper or just plain paper.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Just because your hair is oily, don not over shampoo it, because the body compensates by producing more oil after you remove all the hair from the hair. Simply lather and rinse and that should be enough.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Do not use too many styling products. They are likely to pull the hair down and make it more wilted. Instead, use only one or none of them</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Air-drying your hair is one option you can give a thought about. It won’t give generate much heat that will make your sweat and oil glands (sebaceous glands) more active.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Rinsing with vinegar is recommended for brunettes, and for blondes and redheads, lemon juice. This will remove oil and add shine, both which are good astringents.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Do not wash your hair every day.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Try to minimize the quantity of oil in your daily food intake. Eat more vegetables.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If you want to visit the doctor for oily hair problem, first check your diet, drugs, alcohol and the fatty substances intake. Junk foods contain lot of fat. They harm your heart and hair.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Keep two-in-one shampoos and conditioners away, along with serum products.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Ask your hair stylist about the products that suit you and find if you have to change your shampoo.</p>
+        <h3>Curly Hair Care</h3>   
+		<p>Curls, tussles, waves, twists are once again in vogue! Trend setting celebrities have been wearing attractive curls. Curls make a good solution for the creation of any type of special event from weddings to parties. Even if they are casually styled, they provide instant body and movement to hair. You can create a range of different dazzling updos and hairstyles with your fingers, heated irons, hot rollers or a diffuser. The only factor that can affect the result of your updo is your imagination and your desire to experiment with different looks and styles.</p>
+		<p>You may start with curls that are natural, a boon from nature or man-made curls, but the undoes need a lot more attention than wearing your hair as it is. Curls have the ability to dress up hair ranging from very short to very long. Even if you do not have curly hair, you can still create a curly updo. You have the choice to get a perm to fix a specific type of curl. Otherwise use rollers or hot curling tools. In any case, curls can offer many different looks for updos.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The first updo style is providing a classic look for curly hair. You can do this by using a variety of headbands that hold the curls tightly close to the scalp. After the crown is firmly secured, let the curls flow down the nape of the neck gracefully. If you want an even more formal look, pin the curls on the top of the head.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If the headband is not attractive enough, you can go in for circle of bobby pins to hold your hair back. It would be better if the pins are of the same color as your hair.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Arrange the curls in such a manner that they conceal the hairpins by flowing over them. The contrasting textures create an extra special effect in this style.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your hair is naturally curly or premed, you can create excellent curls by dividing hair into equal sections and drying the curls with a diffuser attachment set to the lowest level.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Use your fingers carefully to form ringlets or curls as you dry the hair.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your hair is wavy or straight, you can still create curls by using a small barrel curling iron.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;After you have fixed your crown hair with bands or pins, use the curling iron to create curls and ringlets.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;If your hair is naturally curly or permed, use your fingers to form the curls at the top of the French Twist.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>	
+		</div>
+	</div>	
+{% endblock%}

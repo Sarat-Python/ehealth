@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block heartcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart5);
+
+function drawChart5() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Sugar Level');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{sugar.count}});
+    {%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{su.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{su.sugarLevel}});
+    data.setValue({{forloop.counter0}}, 2, {{su.sugarLevelGoal}});
+    {%endifequal%}
+    {%endfor%}
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
+    chart.draw(data, {width: 460, height: 250, title: 'Sugar Levels',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Sugar Level', titleTextStyle: {color: 'blue'}}
+       });
+  }
+  </script>
+	<div class="content">
+	 <div style="color:#436de1;font-size: 18px;text-align:center;"><h3><b>Blood Sugar</b></h3></div>
+		<div title="Sugar Levels(in blood)" style="height: 350px;">
+			<div style="float: left;width:480px;height: 300px;margin-top: 20px;" >
+				<form  name="sugar" id="sugar" action="/bloodsugar" method="post">
+						<table style="font-size: 0.99em;width:450px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Sugar Level:</td>
+						<td><br><input maxlength="5" size="5" type="text" name="slevel" style="font-size: 20px;">mg/dl</td></tr>
+						<tr><td>Goal</td><td><input type="text" class=dialogtextbox name="sugoal">&nbsp;&nbsp;mg/dl</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name="sdate" />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'sugar',
+									// inputname
+									'controlname': 'sdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView8" style="float: right;margin-right:15px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_div5" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Sugar Level</th><th>Sugar Level Goal</th></tr>
+						{%for su in sugar%}{%ifequal su.sugarLevel None%}{%else%}
+						<tr><td style="text-align: center;">{{su.collectionDate}}</td><td style="text-align: center;">{{su.sugarLevel}} mg/dl</td><td style="text-align: center;">{{su.sugarLevelGoal}} mg/dl</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView8',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+				
+		<div style="margin: 25px;"><h2 ><b>Blood Sugar Levels: </b></h2>
+		<p>Safe blood sugar levels are around 140mg/dl after meals. Studies have shown that this is the best level for your blood sugar to be at.</p>
+		<h2 style="text-align:center;">Table of Blood Sugar Levels Chart</h2>
+		<p>Women are about as likely as men to develop high blood pressure during their lifetimes. However, for people under 45 years old, the condition affects more men than women. For people 65 years and older, it affects more women than men.</p>
+		<div style="text-align: center;">
+			<table class="main">
+			<tr><td>When Waking Up(Before Breakfast)</td><td>80mg/dL to 120mg/dL</td></tr>
+			<tr class="alt"><td>Before Meals</td><td>80mg/dL to 120mg/dL</td></tr>
+			<tr><td>2 Hours After Meals</td><td>160mg/dL or Less</td></tr>
+			<tr class="alt"><td>At Bedtime</td><td>100mg/dL to 140mg/dL</td></tr>
+			
+			</table></div>
+			<p>Blood sugar levels chart is an important tool for us to know our blood sugar levels so that we can maintain it to avoid some dangerous complications that might harm us. Not only for diabetics, but all of us should maintain and monitor our blood sugar levels chart regularly to prevent diabetes.</p>
+		<h3>Sugar Levels, Diabetes, and Pre diabetes:</h3>	
+		<p>Sugar levels higher than normal mean either diabetes or pre-diabetes is present.</p>
+		<p class="subheadng">There are several ways diabetes is diagnosed:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The first is known as fasting plasma glucose. A person is said to have diabetes if his or her fasting blood sugar level is higher than 126 mg/dl after not eating -- fasting -- for eight hours.</p> 
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The second method is with an oral glucose tolerance test. After fasting for eight hours, a person is given a special sugary drink. That person is said to have diabetes if two hours after the drink he or she has a sugar level higher than 200.</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;The third way is with a randomly checked blood sugar level. If it is greater than 200, with symptoms of increased urination, thirst, and/or weight loss, that person is said to have diabetes. A fasting sugar level or oral glucose tolerance test will be needed to confirm the diagnosis.</p>
+		<p>Any sugar levels higher than normal are unhealthy. A blood sugar higher than normal, but not meeting the above criteria for full-blown diabetes, is called pre-diabetes.</p>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>		
+		</div>
+			
+</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+{%endblock%}

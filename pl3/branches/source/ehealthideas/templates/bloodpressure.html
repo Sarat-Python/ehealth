@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block heartcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart1);
+
+function drawChart1() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Systolic Blood Pressure');
+    data.addColumn('number', 'Diastolic Blood Pressure');
+    data.addRows({{blood.count}});
+    {%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bp.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bp.bloodPressure1}});
+    data.setValue({{forloop.counter0}}, 2, {{bp.bloodPressure2}});{%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    chart.draw(data, {width: 460, height: 250, title: 'Blood Pressure',
+				    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+				        vAxis: {title: 'Bloop Pressure', titleTextStyle: {color: 'blue'}}
+				       });
+    }
+
+
+</script>
+
+<div id="dhtmlgoodies_tabView1">
+<!-- BMI -->
+	<div class="content">
+	<div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h3><b>Blood Pressure </b></h3></span></div>
+		<div style="height:350px;">
+				<div style="float: left;width:480px;border: 0px solid #a1afbe;height:300px;margin-top: 20px;" >
+                    <form  name="bloodpressure" id="bloodpressure" action="/bp" method="post">
+						<table style="font-size: 0.99em;margin:auto;border: 0px solid;font-size: 14px;">
+							<tr><td><br>Blood pressure</td><td><br><input type="text" size="4" name=bldprs1>&nbsp;&nbsp;/&nbsp;&nbsp;<input type="text" size="4" name="bldprs2">&nbsp;&nbsp;mmHg</td></tr>
+							<tr><td>Collection Date </td><td><input type="text"  name=cdate />
+								<script type="text/JavaScript">
+									new tcal ({
+										// formname
+										'formname': 'bloodpressure',
+										// inputname
+										'controlname':'cdate'
+									});
+									</script></td>
+							</tr>
+							<tr><td><br>Goal</td><td><br><input type="text" class=dialogtextbox name=bpgoal></td></tr>
+							<tr><td colspan="2">Brief Note: </td></tr>
+							<tr><td colspan="2"><textarea style="width: 335px;resize:none;" ></textarea></td></tr>
+							<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+						</table>
+					</form>
+				</div>
+				<div id="dhtmlgoodies_tabView3" style="float: right;margin-right:5px;" >
+					<span style="margin-left: 200px;">Track record</span>
+						<div class="dhtmlgoodies_aTab">
+							<div style="margin-top: 5px;">
+						 		<div id="chart_div1"></div>
+							</div>
+						</div>
+						<div class="dhtmlgoodies_aTab" >	
+							<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+							<table class="sample" style="margin: auto;">
+							<tr><th>Date</th><th>Systolic Blood Pressure</th><th>Diastolic Blood Pressure</th><th>Goal</th></tr>
+							{%for bp in blood%}{%ifequal bp.bloodPressure1 None%}{%else%}
+							<tr><td style="text-align: center;">{{bp.collectionDate}}</td><td style="text-align: center;">{{bp.bloodPressure1}}</td><td style="text-align: center;">{{bp.bloodPressure2}}</td><td style="text-align: center;">{{bp.bpGoal}}</td></tr>
+							{%endifequal%}
+							{%endfor%}
+							</table>
+							</div>
+						</div>
+				</div>
+				<script type="text/javascript">
+				initTabs('dhtmlgoodies_tabView3',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+				</script>
+			</div>
+		
+		<div style="margin: 25px;"><h2 ><b>Blood Pressure </b></h2>
+		<p>Blood pressure normally rises and falls throughout the day, but it can cause health problems if it stays high for a long time.</p>
+		<p>Women are about as likely as men to develop high blood pressure during their lifetimes. However, for people under 45 years old, the condition affects more men than women. For people 65 years and older, it affects more women than men.</p>
+		<div style="text-align: center;">
+		<table style="border: 1px solid ;margin: auto;">
+		<tr style="background-color: #0179b9;color:white;"><th>Age</th><th>Men (%)</th><th>Women(%)</th></tr>
+		<tr><td>20-34</td><td>9.2</td><td>2.2</td></tr>
+		<tr ><td>35-44</td><td>21.1</td><td>12.6</td></tr>
+		<tr><td>45-54</td><td>36.2</td><td>36.2</td></tr>
+		<tr ><td>55-64</td><td>50.2</td><td>54.4</td></tr>
+		<tr><td>65-74</td><td>64.1</td><td>70.8</td></tr>
+		<tr ><td>75 and above</td><td>65.0</td><td>80.2</td></tr>
+		<tr><td>All</td><td>31.8</td><td>30.3</td></tr>
+			</table></div><br>
+		  <table style="border: 1px solid ;margin: auto;" >
+		<tr style="colspan:2;text-indent: 150px;"><th>Blood Pressure Levels</th></tr>
+		<tr><td style="padding: 5px 0px 0px 5px;">Normal</td><td>Systolic:less than 120mmHg<br>Diastollic: less than 80mmHg</td></tr>
+		<tr><td style="padding: 5px 0px 0px 5px;">At Risk(Pre-hypertension)</td><td>Systolic:less than 120-139 mmHg<br>Diastollic: 80-89mmHg</td></tr>
+		<tr><td style="padding: 5px 0px 0px 5px;">High</td><td>Systolic:140 mmHg or higher<br>Diastollic: 90mmHg or higher</td></tr>
+			</table>		<div style="text-align: center;">
+			</div>
+		<h3>How to Prevent High Blood Pressure</h3>	
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Check your blood pressure</p> 
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Eat a healthy diet</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Maintain a healthy weight</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Be physically active</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Don't smoke</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Limit alcohol use</p>
+		
+		
+		</div>
+			
+
+	</div>
+
+</div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if bmimsg %}alert('{{bmimsg}}'){%endif%}
+</script>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block heartcolor %}style="background-color:#fca503;color:#000;"{%endblock%}
+{% block content %}
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart8);
+
+function drawChart8() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Body Temperature');
+    data.addColumn('number', 'GOAL');
+    data.addRows({{tempe.count}});
+    {%for bt in tempe%}{%ifequal bt.temperature None%}{%else%}
+    data.setValue({{forloop.counter0}}, 0, '{{bt.collectionDate}}');
+    data.setValue({{forloop.counter0}}, 1, {{bt.temperature}});
+    data.setValue({{forloop.counter0}}, 2, {{bt.temperatureGoal}});
+    {%endifequal%}
+    {%endfor%}
+    var chart = new google.visualization.LineChart(document.getElementById('chart_temp'));
+    chart.draw(data, {width: 460, height: 250, title: 'Body Temperature',
+    	hAxis: {title: 'Date', titleTextStyle: {color: 'blue'}},
+        vAxis: {title: 'Body Temperature', titleTextStyle: {color: 'blue'}}
+    });
+  }
+</script>
+
+<div id="dhtmlgoodies_tabView1">
+<!-- BMI -->
+	<div class="content">
+	<div style="text-align: center;"> <span style="color:#436de1;font-size: 18px;"><h3><b>Body Temperature</b></h3></span></div>
+		<div style="height: 350px;margin-left: 25px;">
+			<div style="float: left;width:480px;border: 0px solid #a1afbe;height: 300px;margin-top: 20px;" >
+				<form  name="btemp" id="btemp" action="/bodytemp" method="post">
+					<table style="font-size: 0.99em;width:480px;margin:auto;border: 0px solid;font-size: 14px;">
+						<tr><td><br>Present Temperature:</td><td><br><input type="text" class=dialogtextbox1 name=ptemp>degrees/Fahrenheit</td></tr>
+						<tr><td>Goal:</td><td><input type="text" class=dialogtextbox1 name=tempgoal>degrees/Fahrenheit</td></tr>
+						<tr><td><br>Collection Date:</td><td><br>
+								<input type="text" name=btempdate />
+								<script type="text/JavaScript">
+								new tcal ({
+									// formname
+									'formname': 'btemp',
+									// inputname
+									'controlname': 'btempdate'
+								});</script></td>
+						</tr>
+						<tr><td colspan="2">Brief Note:</td></tr>
+						<tr><td colspan="2"><textarea style="width: 335px;resize:none;"></textarea></td></tr>
+						<tr><td colspan="2" align="center"><input type="submit" style="font-size: 8pt" value="Add entry"><input type="reset" style="font-size: 8pt" value="Clear Form"></td></tr>
+					</table>
+				</form>
+			</div>
+			<div id="dhtmlgoodies_tabView11" style="float: right;margin-right:5px;" >
+				<span style="margin-left: 200px;">Track record</span>
+					<div class="dhtmlgoodies_aTab" >
+						<div style="margin-top: 5px">
+					 		<div id="chart_temp" ></div>
+						</div>
+					</div>
+					<div class="dhtmlgoodies_aTab" >	
+						<div style="margin:5px;border: 0px solid #a1afbe;width:450px;height:260px;overflow: auto;">
+						<table class="sample" style="margin: auto;">
+						<tr><th>Date</th><th>Present Body Temperature</th><th>Goal</th></tr>
+						{%for bdy in tempe%}{%ifequal bdy.temperature None%}{%else%}
+						<tr><td style="text-align: center;">{{bdy.collectionDate}}</td><td style="text-align: center;">{{bdy.temperature}}<sup>o</sup>C</td><td style="text-align: center;">{{bdy.temperatureGoal}}<sup>o</sup>C</td></tr>
+						{%endifequal%}
+						{%endfor%}
+						</table>
+						</div>
+					</div>
+			</div>
+			<script type="text/javascript">
+			initTabs('dhtmlgoodies_tabView11',Array('GRAPH','TABLE'),0,470,270,Array(true,true));
+			</script>
+		</div>
+			<div style="margin: 25px;"><h2 ><b>Body Temperature:</b></h2>
+		<p>Body temperature is a measure of the body's ability to generate and get rid of heat. The body is very good at keeping its temperature within a narrow, safe range in spite of large variations in temperatures outside the body.</p>
+		<p>In most adults, an oral temperature above 100°F (37.8°C) or a rectal or ear temperature above 101°F (38.3°C) is considered a fever. A child has a fever when his or her rectal temperature is 100.4°F (38°C) or higher.</p>
+		<h3>Causes for Fever:</h3>
+		<p>A fever may occur as a reaction to:</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Infection: This is the most common cause of a fever. Infections may affect the whole body or a specific body part (localized infection).</p>
+		<p style="text-indent: 0px"><img src="/static/images/arrow_transparent_red.gif" style="width: 13px;height: 13px;">&nbsp;&nbsp;Medicines, such as antibiotics, narcotics, barbiturates, antihistamines, and many others. These are called drug fevers. Some medicines, such as antibiotics, raise the body temperature directly; others interfere with the body's ability to readjust its temperature when other factors cause the temperature to rise.</p>
+		
+		<div style="text-align: center;">
+			<table class="main" >
+			<tr ><th>Normal:</th><td style="background-color: #EAF2D3;">The average normal temperature is 98.6<sup>o</sup>(37<sup>o</sup>C).But "normal" varies from person to person.Your temperature will always vary throught the day,usually being lowest in early morning and raising as much as 1<sup>o</sup>F(0.6<sup>o</sup>C)in the early evening.Your temperatire may also raise by 1<sup>o</sup>F(0.6<sup>o</sup>C) or more if you excercise in a hot day.A woman's body temperature typically varies by 1<sup>o</sup>F(0.6<sup>o</sup>C) or more through her menustral cycle,peaking around the time of ovulation. </td></tr>
+			<tr ><th>Abnormal:</th><td style="background-color: #EAF2D3;">Oral,ear(tympanic),or rectal temperature<br>
+			Fever:100.4<sup>o</sup>F(38<sup>o</sup>C) to 103.9<sup>o</sup>F(39.9<sup>o</sup>C)<br>
+			High fever:104<sup>o</sup>F(40<sup>o</sup>C) and higher<br><br>
+			Armpit(axillary) temperature
+			Fever:99.4<sup>o</sup>F(37.4<sup>o</sup>C) to 102.9<sup>o</sup>F(39.4<sup>o</sup>C)<br>
+			High fever:103<sup>o</sup>F(39.5<sup>o</sup>C) and higher</td></tr>
+			</table>
+<br> <div style="border:0px solid;float:right;"><a href="#" style="text-decoration: none;color:black;color:#39C;">Go to Top</a></div>			
+			</div>
+			</div>
+	</div></div>
+{% if msgLog %}<script type="text/javascript">$('.login_box').slideToggle(400);</script>{%endif%}
+<script type="text/javascript">
+{% if bmimsg %}alert('{{bmimsg}}'){%endif%}
+</script>
+{% endblock %}

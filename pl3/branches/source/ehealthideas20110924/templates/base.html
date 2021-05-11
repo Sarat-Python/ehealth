@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>eHealth</title>
+	<link REL="SHORTCUT ICON" href="/static/images/elogo.png"> 
+	<link rel="stylesheet" href="/static/css/ehealth.css" type="text/css" media="screen">
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="/static/js/ajax.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/ehealth.js"></script>
+	<script type="text/javascript" src="/static/js/javascript.js"></script>
+	<link rel="stylesheet" href="/static/css/popup.css" type="text/css" media="screen">
+<script type="text/javascript" src="/static/js/popup.js"></script>
+	<script type="text/javascript" src="/static/js/popupdialog.js"></script>
+	<script type="text/javascript" src="/static/js/calendar_us.js"></script>
+	<style type="text/css">
+		/*demo page css*/
+		.demoHeaders { margin-top: 2em; }
+		#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+		#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+		ul#icons {margin: 0; padding: 0;}
+		ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+		ul#icons span.ui-icon {float: left; margin: 0 4px;}
+	</style>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.login').click( function () {
+			$('.login_box').slideToggle(400);
+		});
+	$(".login_box").mouseup(function() {
+				return false
+			});
+			$(document).mouseup(function(e) {
+				if($(e.target).parent(".login").length==0) {
+					$(".login").removeClass("login_box");
+					$(".login_box").hide();
+				}
+			});		
+	});
+	</script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+</head>
+<body>
+	{%if not session.username%}	
+<div style="float:right;margin-top:80px;font-size: 15px;border: 0px solid;width: 350px;text-align: center;">
+<a href="/" style="text-decoration: none;color:#333;margin-left: 235px;">Home</a>&nbsp;|&nbsp;
+<a href="/signup" style="color:#333;">Register</a></div>
+
+{%endif%}
+{%if session.username %}
+<div style="float:right;margin-top:80px;font-size: 15px;border: 0px solid;width: 350px;text-align: center;">
+<a href="/" style="text-decoration: none;color:#333;margin-left: 230px;">Home</a>&nbsp;|&nbsp;
+<a href="/signout" style="color:#333;">Sign out</a>
+</div>
+{%endif%}
+{% if session.username %}<div style="margin-left:500px;;margin-top: 80px;position: absolute;color:#416be0;font-size: 15px;"> Welcome {{session.name}}</div>{%endif%}
+
+
+
+	<div style="margin-left:730px;margin-top: 35px;position: absolute;border: 0px solid;">
+	
+	<div style="margin-right:7px;margin-top:-35px;background-color: #0179b9 /* #416be0 */;-webkit-border-radius:8px;	border-radius: 0px 0px 3px 3px;-moz-border-radius-topright: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;padding: 2px;padding-left: 18px;padding-right: 10px;">
+	<a href="#" style="text-decoration: none;color: white;"><span style="">Healthy Ideas delivered to <strong>{%for hi in hits%}{{hi.counter}}{%endfor%}</strong> users</span></a>
+	</div>
+	<img src="/static/images/hhl.png" style="margin-left: 3px;margin-top: 10px;"></div>
+	
+<div style="margin-left: 305px;margin-top: 20px;position: absolute;"><g:plusone size="small" annotation="inline"></g:plusone></div>
+<div><span style="text-align:center;margin-left: -10px;border: 0px;"><img alt="eHealth" src="/static/images/ehealthideas.png"></span>
+
+</div>
+
+</head>
+<body>
+	
+	<!-- old menu -->
+	<div><ul id="navigation-1">
+	
+<li style="border-right: 1px solid #ffffff;"><a href="/weightbmi" title="Home" {% block fitnesscolor %}{%endblock%}>Fitness</a>
+<ul class="navigation-2">
+			   					<li>
+									<a href="weightbmi">BMI</a>
+								</li>
+			   					<li>
+									<a href="fitexercise">Workout</a>
+								</li>
+			   					<li>
+									<a href="fitswimming">Swimming</a>
+								</li>
+								<li>
+									<a href="fitcycling">Cycling Exercise</a>
+									</li>
+								<li>
+									<a href="walking">Walking</a>
+									</li>
+								<li>
+									<a href="sleep" class=lastt>Wellness Sleep</a>
+	</ul>
+								</li>
+	<li style="border-right: 1px solid #ffffff;"><a href="healthyfood" title="Nutrition" {% block foodcolor %}{%endblock%}>Nutrition</a>		   			
+     <ul class="navigation-2">        
+             <li>
+						
+				
+								<li>
+									<a href="healthyfood">Healthy Food</a>
+								</li>
+			   					<li>
+									<a href="fruits">Fruits Vegetables</a>
+								</li>
+			   					<li>
+									<a href="water">Water Safety</a>
+								</li>
+			   					</ul>
+			   				
+					</li>
+  <li style="border-right: 1px solid #ffffff;"><a href="bp" {% block heartcolor %}{%endblock%}>Health Tracker</a>		              
+    				
+						<ul class="navigation-2">
+								<li>
+									<a href="bp">Blood Pressure</a>
+								</li>
+			   					<li >
+									<a href="heartrate">Heart Rate</a>
+								</li>
+			   					<li>
+									<a href="bodytemp">Body Temperature</a>
+								</li>
+								<li>
+									<a href="bloodsugar">Blood Sugar </a>
+								</li>
+			   					</ul>
+			   			
+					</li>    
+             
+             
+   <li style="border-right: 1px solid #ffffff;"><a href="makeup" title="Women" {% block womencolor %}{%endblock%}>Women</a>	
+  
+			   			
+			   				<ul class="navigation-2">
+			   					<li>
+									<a href="makeup">Beautiful Make up</a>
+									</li>
+			   					<li>
+									<a href="skin">Skin Beauty Care</a>
+								</li>
+			   					<li>
+									<a href="hair">Hair Beauty Care</a>
+								</li>
+								<li>
+									<a href="eyecare">Eye Beauty Care</a>
+								</li>
+								<li>
+									<a href="lipcare">Lips Beauty Care</a>
+								</li>
+								<li>
+									<a href="womendiet">Diet Nutrition Tips</a>
+								</li>
+								<li>
+									<a href="fitness">Fitness Tips</a>
+								</li>
+								<li>
+									<a href="manicure">Manicure Tips</a>
+								</li>
+								<li>
+									<a href="pedicure">Pedicure Tips</a>
+								</li>
+								<li>
+									<a href="menstrualcycle">Menstrual Issues</a>
+								</li>
+								<li>
+									<a href="housekeeping">House Keeping</a>
+								</li>
+								<li>
+									<a href="menopause">Menopause</a>
+								</li>
+								<li>
+									<a href="premenstrual">PMS</a>
+								</li>
+								<li>
+									<a href="pregnancy">Pregnancy</a>
+								</li>
+			   				</ul>          
+             
+             
+<li style="border-right: 1px solid #ffffff;"><a href="infant" title="Kids" {% block kidscolor %}{%endblock%}>Kids</a>	
+						<ul class="navigation-2">
+								<li>
+									<a href="infant">Infants-I</a>
+								</li>
+							<li>
+									<a href="toddlers">Infants-II</a>
+								</li>
+								<li>
+									<a href="toddlers2">Toodlers</a>
+								</li>
+									<li>
+									<a href="preschoolers">Preschoolers</a>
+								</li>
+									<li>
+									<a href="midchild">MiddleChildhood-I</a>
+								</li>
+									<li>
+									<a href="childone">MiddleChildhood-II</a>
+								</li>
+									<li>
+									<a href="childtwo">Early Adolescence</a>
+								</li>
+									<li>
+									<a href="middleadolescence">MiddleAdolescence</a>
+								</li>
+									<li>
+									<a href="childhoodvaccination">Vaccination</a>
+								</li>
+								
+								</ul>
+						
+	<li style="border-right: 1px solid #ffffff;"><a href="mennutrition" title="Men" {% block mencolor %}{%endblock%}>Men</a>	
+			<ul class="navigation-2">	
+									<li>
+									<a href="mennutrition">Men Nutrition</a>
+								</li>
+							<li>
+									<a href="heartdisease">Heart Disease</a>
+								</li>	
+								<li>
+									<a href="bellyfat">Belly Fat in Men</a>
+								</li>
+								<li>
+									<a href="quit">Quit Smoking</a>
+								</li>
+								
+								</ul>		
+								
+	            	   		</li>
+	       
+			  <li style="border-right: 1px solid #ffffff;"><a href="thyroidproblems" style="width:123px;" title="Disease Prevention" {% block discolor %}{%endblock%}>Prevention</a>	
+					<ul class="navigation-2">
+					<li><a href="thyroidproblems">Thyroid Problems</a>			</li>
+	            	   		<li><a href="breastcancer">Breast Cancer</a>   		</li>
+	            	   		<li><a href="heatstroke">Heat Stroke</a>   		</li>
+	            	   		<li><a href="dengue">Dengue</a>   		</li>
+	            	   		<li><a href="malaria">Malaria</a>   		</li>
+	            	   		
+	            	   			</ul>
+	            	   		{%if session.username%}	
+	            	   		 <li style="border-left: 1px solid #ffffff;"><a href="myprofile" style="width:125px;" title="Profile" {% block procolor %}{%endblock%}>Profile</a>	
+	            	   		</li>          
+             {%endif%}
+             
+				{%if not session.username%}<li style="border-left: 1px solid #ffffff;">
+					<a href="#" class="login" style="text-decoration: none;width:125px;">Sign In</a>
+					</li>{%endif%}
+					</ul>   
+	<div class="login_wrap" style="top:0px; padding-left:0px;">
+		  <div class="login_box" style="border: 1px solid;">
+		    <div class="login_form">
+			<form method="post" action="/signin" >
+			<table style="border-collapse: collapse;">
+			<tr><td class="text_style" >User Name</td><td><input type="text" name="email" class="input"  /></td></tr>
+			<tr><td class="text_style">Password</td><td><input type="password" name="pwd" class="input"  /></td></tr>
+			<tr><td></td><td style="text-align: center;"><input type="submit" class="submit" value=" Log In " /></td></tr>
+			</table>
+		    </form>
+		    <div style="text-align: center;color: red;">{{msgLog}}</div>
+		    </div>
+		  </div>
+		</div></div>
+
+
+{% block content %}{% endblock%}
+<div class="footer" style="text-align: left;margin-left: 5px;"><a href="" style="text-decoration: none;color:black;color:#333;">&copy; 2011 eHealth Ideas LLC</a></div>
+
+</body>
+</html>
